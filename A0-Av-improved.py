@@ -46,7 +46,7 @@ def sum_with_exceptions_jack(lst,j,i):
             total += jack(num[j],i)  # Add other elements
     return total
 #########decide here which nsq
-nsq=3
+nsq=5
 ##########
 
 
