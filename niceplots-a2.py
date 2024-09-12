@@ -39,7 +39,7 @@ nsq5plt=pd.read_csv('./Fits/A2-Av-nsq5-Fit.csv',sep='\s')
 
 #x0, y0 = [-1, 32], [-nsq0plt['EffectiveMass'], -nsq0plt['EffectiveMass']]
 x1, y1 = [-1, 32], [-nsq1plt['EffectiveMass'], -nsq1plt['EffectiveMass']]
-x2, y2 = [-1, 32], [-2*nsq2plt['EffectiveMass'], -2*nsq2plt['EffectiveMass']]
+x2, y2 = [-1, 32], [-nsq2plt['EffectiveMass'], -nsq2plt['EffectiveMass']]
 x3, y3 = [-1, 32], [-nsq3plt['EffectiveMass'], -nsq3plt['EffectiveMass']]
 x4, y4 = [-1, 32], [-nsq4plt['EffectiveMass'], -nsq4plt['EffectiveMass']]
 x5, y5 = [-1, 32], [-nsq5plt['EffectiveMass'], -nsq5plt['EffectiveMass']]
@@ -71,7 +71,7 @@ plt.ylabel(r'$\widetilde{A}_2$')
 #plt.errorbar(list(range(30)), -pre0*nsq0[0][0:30], yerr=-pre0*nsq0[1][0:30],ls='none',fmt='x',label='$n^2=0$',color='g')
 
 plt.errorbar(list(range(30)), nsq1[0][0:30], yerr=nsq1[1][0:30],ls='none',fmt='x',label='$n^2=1$',color='b')
-plt.errorbar(list(range(30)), 2*nsq2[0][0:30], yerr=2*nsq2[1][0:30],ls='none',fmt='x',label='$n^2=2$',color='orange')
+plt.errorbar(list(range(30)), nsq2[0][0:30], yerr=nsq2[1][0:30],ls='none',fmt='x',label='$n^2=2$',color='orange')
 plt.errorbar(list(range(30)), nsq3[0][0:30], yerr=nsq3[1][0:30],ls='none',fmt='x',label='$n^2=3$',color='brown')
 plt.errorbar(list(range(30)), nsq4[0][0:30], yerr=nsq4[1][0:30],ls='none',fmt='x',label='$n^2=4$',color='red')
 plt.errorbar(list(range(30)), nsq5[0][0:30], yerr=nsq5[1][0:30],ls='none',fmt='x',label='$n^2=5$',color='magenta')
@@ -90,7 +90,7 @@ plt.fill_between(list(range(47))[int(reg_low4):int(reg_up4+1)], -nsq4plt['Effect
 plt.plot(x5,y5, color='magenta')
 plt.fill_between(list(range(47))[int(reg_low5):int(reg_up5+1)], -nsq5plt['EffectiveMass']+sigma5, -nsq5plt['EffectiveMass']-sigma5, color='magenta',alpha=0.2)
 
-plt.annotate(r'$\bf{preliminary}$',xy=(0.1,0.03),xycoords='axes fraction',fontsize=15,color='magenta',alpha=.7)
+plt.annotate(r'$\bf{preliminary}$',xy=(0.7,0.03),xycoords='axes fraction',fontsize=15,color='grey',alpha=.7)
 plt.axis((0,30,0.09,0.15))
 
 
