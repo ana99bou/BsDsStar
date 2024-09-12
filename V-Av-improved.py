@@ -24,7 +24,7 @@ def var(data):
 
 
 #########decide here which nsq
-nsq=5
+nsq=4
 ##########
 
 

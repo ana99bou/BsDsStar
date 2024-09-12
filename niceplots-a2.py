@@ -91,7 +91,7 @@ plt.plot(x5,y5, color='magenta')
 plt.fill_between(list(range(47))[int(reg_low5):int(reg_up5+1)], -nsq5plt['EffectiveMass']+sigma5, -nsq5plt['EffectiveMass']-sigma5, color='magenta',alpha=0.2)
 
 plt.annotate(r'$\bf{preliminary}$',xy=(0.1,0.03),xycoords='axes fraction',fontsize=15,color='magenta',alpha=.7)
-#plt.axis((0,30,0.1,0.15))
+plt.axis((0,30,0.09,0.15))
 
 
 #plt.yscale('log')
