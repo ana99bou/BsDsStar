@@ -89,7 +89,7 @@ plt.fill_between(list(range(47))[int(reg_low5):int(reg_up5+1)], -nsq5plt['Effect
 
 plt.axis((0,30,0.33,0.49))
 
-plt.annotate(r'$\bf{preliminary}$',xy=(0.1,0.03),xycoords='axes fraction',fontsize=15,color='magenta',alpha=.7)
+plt.annotate(r'$\bf{preliminary}$',xy=(0.7,0.03),xycoords='axes fraction',fontsize=15,color='grey',alpha=.7)
 
 
 #plt.yscale('log')
