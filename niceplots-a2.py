@@ -82,7 +82,7 @@ plt.errorbar(list(range(30)), nsq5[0][0:30], yerr=nsq5[1][0:30],ls='none',fmt='x
 plt.plot(x1,y1, color='b')
 plt.fill_between(list(range(47))[int(reg_low1):int(reg_up1+1)], -nsq1plt['EffectiveMass']+sigma1, -nsq1plt['EffectiveMass']-sigma1, color='b',alpha=0.2)
 plt.plot(x2,y2,color='orange')
-plt.fill_between(list(range(47))[int(reg_low2):int(reg_up2+1)], -2*nsq2plt['EffectiveMass']+sigma2, -2*nsq2plt['EffectiveMass']-sigma2, color='orange',alpha=0.2)
+plt.fill_between(list(range(47))[int(reg_low2):int(reg_up2+1)], -nsq2plt['EffectiveMass']+sigma2, -nsq2plt['EffectiveMass']-sigma2, color='orange',alpha=0.2)
 plt.plot(x3,y3, color='brown')
 plt.fill_between(list(range(47))[int(reg_low1):int(reg_up1+1)], -nsq3plt['EffectiveMass']+sigma3, -nsq3plt['EffectiveMass']-sigma3, color='brown',alpha=0.2)
 plt.plot(x4,y4, color='red')
