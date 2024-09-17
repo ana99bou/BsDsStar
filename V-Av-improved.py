@@ -106,7 +106,7 @@ def sum_with_exceptions_jack(lst,nsq,j,i):
 
 
 #########decide here which nsq
-nsq=5
+nsq=4
 ##########
 
 
@@ -157,7 +157,7 @@ mom=[[''],
       'final_state_GY/operator_GammaX/n2_3/1_-1_-1','final_state_GZ/operator_GammaY/n2_3/-1_-1_1','final_state_GX/operator_GammaZ/n2_3/-1_-1_1','final_state_GX/operator_GammaY/n2_3/1_-1_-1','final_state_GY/operator_GammaZ/n2_3/-1_-1_1','final_state_GZ/operator_GammaX/n2_3/1_-1_-1',
       'final_state_GY/operator_GammaX/n2_3/-1_-1_-1','final_state_GZ/operator_GammaY/n2_3/-1_-1_-1','final_state_GX/operator_GammaZ/n2_3/-1_-1_-1','final_state_GX/operator_GammaY/n2_3/-1_-1_-1','final_state_GY/operator_GammaZ/n2_3/-1_-1_-1','final_state_GZ/operator_GammaX/n2_3/-1_-1_-1'],
      ['final_state_GX/operator_GammaY/n2_4/0_0_2','final_state_GY/operator_GammaZ/n2_4/2_0_0', 'final_state_GZ/operator_GammaX/n2_4/0_2_0','final_state_GY/operator_GammaX/n2_4/0_0_2','final_state_GZ/operator_GammaY/n2_4/2_0_0', 'final_state_GX/operator_GammaZ/n2_4/0_2_0',
-      'final_state_GX/operator_GammaY/n2_4/0_0_-2','final_state_GY/operator_GammaZ/n2_4/-2_0_0', 'final_state_GZ/operator_GammaX/n2_4/0_-2_0','final_state_GY/operator_GammaX/n2_4/0_0_-2','final_state_GZ/operator_GammaY/n2_4/-2_0_0', 'final_state_GX/operator_GammaZ/n2_4/0_-2_0'],
+      'final_state_GY/operator_GammaX/n2_4/0_0_-2','final_state_GZ/operator_GammaY/n2_4/-2_0_0', 'final_state_GX/operator_GammaZ/n2_4/0_-2_0','final_state_GX/operator_GammaY/n2_4/0_0_-2','final_state_GY/operator_GammaZ/n2_4/-2_0_0', 'final_state_GZ/operator_GammaX/n2_4/0_-2_0'],
      ['final_state_GX/operator_GammaY/n2_5/0_2_1','final_state_GY/operator_GammaZ/n2_5/1_2_0','final_state_GZ/operator_GammaX/n2_5/2_1_0','final_state_GX/operator_GammaZ/n2_5/2_1_0','final_state_GY/operator_GammaX/n2_5/2_0_1','final_state_GZ/operator_GammaY/n2_5/1_2_0','final_state_GX/operator_GammaY/n2_5/2_0_1','final_state_GY/operator_GammaZ/n2_5/1_0_2','final_state_GZ/operator_GammaX/n2_5/0_1_2','final_state_GX/operator_GammaZ/n2_5/0_1_2','final_state_GY/operator_GammaX/n2_5/0_2_1','final_state_GZ/operator_GammaY/n2_5/1_0_2',
       'final_state_GX/operator_GammaY/n2_5/0_-2_1','final_state_GY/operator_GammaZ/n2_5/1_-2_0','final_state_GZ/operator_GammaX/n2_5/-2_1_0','final_state_GX/operator_GammaZ/n2_5/-2_1_0','final_state_GY/operator_GammaX/n2_5/-2_0_1','final_state_GZ/operator_GammaY/n2_5/1_-2_0','final_state_GX/operator_GammaY/n2_5/-2_0_1','final_state_GY/operator_GammaZ/n2_5/1_0_-2','final_state_GZ/operator_GammaX/n2_5/0_1_-2','final_state_GX/operator_GammaZ/n2_5/0_1_-2','final_state_GY/operator_GammaX/n2_5/0_-2_1','final_state_GZ/operator_GammaY/n2_5/1_0_-2',
       'final_state_GX/operator_GammaZ/n2_5/2_-1_0','final_state_GY/operator_GammaX/n2_5/2_0_-1','final_state_GZ/operator_GammaY/n2_5/-1_2_0','final_state_GX/operator_GammaY/n2_5/0_2_-1','final_state_GY/operator_GammaZ/n2_5/-1_2_0','final_state_GZ/operator_GammaX/n2_5/2_-1_0','final_state_GX/operator_GammaZ/n2_5/0_-1_2','final_state_GY/operator_GammaX/n2_5/0_2_-1','final_state_GZ/operator_GammaY/n2_5/-1_0_2','final_state_GX/operator_GammaY/n2_5/2_0_-1','final_state_GY/operator_GammaZ/n2_5/-1_0_2','final_state_GZ/operator_GammaX/n2_5/0_-1_2',
@@ -273,9 +273,9 @@ plt.ylabel(r'$\widetilde{V}$')
 plt.errorbar(list(range(dt)), np.absolute(avn0)[0:dt], yerr=errn0[0:dt],ls='none',fmt='x',label='nsq={}'.format(nsq))
 #plt.yscale('log')
 plt.legend()
-#plt.savefig('./V/V-nsq{}.png'.format(nsq))
+plt.savefig('./V/V-nsq{}.png'.format(nsq))
 
-#np.savetxt('./V/V-nsq{}.txt'.format(nsq), np.c_[np.absolute(avn0), errn0])
+np.savetxt('./V/V-nsq{}.txt'.format(nsq), np.c_[np.absolute(avn0), errn0])
 
 ###############################################################################
 
