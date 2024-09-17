@@ -40,15 +40,18 @@ def sum_with_exceptions(lst,nsq):
             total -= 1/2*(lst[i+3]+lst[i+4]+lst[i+5])
         
         return total/len(lst)
-    elif nsq==3:
-        for i in range(len(lst)):
-            total += lst[i]
-        return total/len(lst)
     else:
         for i in range(0, len(lst), 6):
             total += lst[i]+lst[i+1]+lst[i+2]
             total -= lst[i+3]+lst[i+4]+lst[i+5]
         return total/len(lst)
+    
+    '''
+    elif nsq==3:
+        for i in range(len(lst)):
+            total += lst[i]
+        return total/len(lst)
+    '''
 
 
 def sum_with_exceptions_jack(lst,nsq,j,i):
@@ -60,14 +63,17 @@ def sum_with_exceptions_jack(lst,nsq,j,i):
         for k in range(len(lst)//2,len(lst), 6):
             total += 1/2*(jack(lst[k][j],i)+jack(lst[k+1][j],i)+jack(lst[k+2][j],i))
             total -= 1/2*(jack(lst[k+3][j],i)+jack(lst[k+4][j],i)+jack(lst[k+5][j],i))
-    elif nsq==3:
-        for k in range(len(lst)):
-            total += jack(lst[k][j],i)
     else:    
         for k in range(0, len(lst), 6):
             total += jack(lst[k][j],i)+jack(lst[k+1][j],i)+jack(lst[k+2][j],i)
             total -= jack(lst[k+3][j],i)+jack(lst[k+4][j],i)+jack(lst[k+5][j],i)
     return total/len(lst)
+
+'''
+elif nsq==3:
+    for k in range(len(lst)):
+        total += jack(lst[k][j],i)
+'''
 
 '''
 def sum_with_exceptions_jack(lst,nsq,j,i):
