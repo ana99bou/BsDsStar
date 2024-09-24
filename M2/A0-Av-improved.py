@@ -4,13 +4,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import sys
 from scipy.optimize import minimize
-import scipy
-
-
-def pvalue(chi2, dof):
-    r"""Compute the $p$-value corresponding to a $\chi^2$ with `dof` degrees
-    of freedom."""
-    return 1 - scipy.stats.chi2.cdf(chi2, dof)
 
 def jack(x,j):
     r=0
@@ -57,7 +50,10 @@ nsq=1
 ##########
 
 
-f = h5py.File("BsDsStar.h5", "r")
+f = h5py.File("BsDsStar_M2.h5", "r")
+f2 = h5py.File("./BsDsStar_2ptData_M2.h5", "r")
+
+#f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/final_state_GX/operator_GammaXGamma5/n2_1/1_0_0/forward/data"]
 
 mom=[[''],
      ['final_state_GX/operator_GammaXGamma5/n2_1/1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_1','final_state_GX/operator_GammaXGamma5/n2_1/-1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_-1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_-1'],
@@ -82,15 +78,16 @@ mom=[[''],
 ptmom=['0_0_0','1_0_0','1_1_0','1_1_1', '2_0_0','2_1_0']
 
 
-dsets=[f["/CHARM_PT_SEQ_SM12.14_s0.02144/c0.248/dT30/{}/forward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
-dsetsb=[f["/CHARM_PT_SEQ_SM12.14_s0.02144/c0.248/dT30/{}/backward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
+dsets=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/forward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
+dsetsb=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/backward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
 
 nmom=len(mom[nsq])
 
-dsxn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaX/{}/data".format(ptmom[nsq])]
-dsyn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaY/{}/data".format(ptmom[nsq])]
-dszn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaZ/{}/data".format(ptmom[nsq])]
-bsn0=f["/rhq_m2.42_csw2.68_zeta1.52_SM12.14_SM12.14_s0.02144/operator_Gamma5/0_0_0/data"]
+#/cl_SM10.36_SM10.36_0.025/c0.340/operator_GammaX/n2_4/data
+dsxn0=f2["/cl_SM10.36_SM10.36_0.025/c0.340/operator_GammaX/n2_{}/data".format(nsq)]
+dsyn0=f2["/cl_SM10.36_SM10.36_0.025/c0.340/operator_GammaX/n2_{}/data".format(nsq)]
+dszn0=f2["/cl_SM10.36_SM10.36_0.025/c0.340/operator_GammaX/n2_{}/data".format(nsq)]
+bsn0=f2["/hl_SM10.36_SM10.36_0.025_m3.49_csw3.07_zeta1.76/operator_Gamma5/n2_0/data"]
 
 
 
@@ -104,9 +101,9 @@ mb = 1.9257122802734448
 md0 = 0.73483032
 pre = md0 / (2 * md * mb)
 
-nconf=98
-dt=30
-ts=96
+nconf=889
+dt=26
+ts=64
 
 # Initialize arrays
 
@@ -169,7 +166,7 @@ for j in range(dt):
 #        x=x+((((jack(av1n0x[j],i)-jack(av1n0y[j],i)+jack(av1n0z[j],i)+jack(av1n0xm[j],i)-jack(av1n0ym[j],i)+jack(av1n0zm[j],i)+jack(av1n0xn[j],i)-jack(av1n0yn[j],i)+jack(av1n0zn[j],i)+jack(av1n0xmn[j],i)-jack(av1n0ymn[j],i)+jack(av1n0zmn[j],i)+jack(av1n0xp[j],i)-jack(av1n0yp[j],i)+jack(av1n0zp[j],i)+jack(av1n0xmp[j],i)-jack(av1n0ymp[j],i)+jack(av1n0zmp[j],i)+jack(av1n0xnp[j],i)-jack(av1n0ynp[j],i)+jack(av1n0znp[j],i)+jack(av1n0xmnp[j],i)-jack(av1n0ymnp[j],i)+jack(av1n0zmnp[j],i))/nmom)/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(30-j))))*pre-avn0[j])**2
         #x=x+((((sum_with_exceptions_jack(av1n0, j, i))/nmom)/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(30-j))))*pre-avn0[j])**2
         #x=x+((((jack(av1n0[0][j],i)+jack(av1n0[1][j],i)+jack(av1n0[2][j],i)+jack(av1n0[3][j],i)+jack(av1n0[4][j],i)+jack(av1n0[5][j],i))/nmom)/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(30-j))))*pre-avn0[j])**2
-        x=x+((((sum_with_exceptions_jack(av1n0, j, i)))/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(30-j))))*pre-avn0[j])**2
+        x=x+((((sum_with_exceptions_jack(av1n0, j, i)))/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(dt-j))))*pre-avn0[j])**2
 
     errn0[j]=np.sqrt((nconf-1)/nconf*x) 
     #errnn0[j]=np.sqrt((98-1)/98*x)*10**(85)
@@ -227,7 +224,7 @@ mbar=minimize(chi,0.1,method='Nelder-Mead', tol=1e-6)
 
 def jackmass(t1,i):
     #+jack(av1n0xm[t1],i)-jack(av1n0ym[t1],i)+jack(av1n0zm[t1],i)
-    return (((sum_with_exceptions_jack(av1n0, t1, i)))/(1/3*np.sqrt((jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[t1],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1))*np.exp(-mb*(30-(t1)))))*pre
+    return (((sum_with_exceptions_jack(av1n0, t1, i)))/(1/3*np.sqrt((jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[t1],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1))*np.exp(-mb*(dt-(t1)))))*pre
 
 def chijack(a,k):
     return np.dot(np.transpose([jackmass(i+reg_low,k)-a for i in range(int(ts/2-1-reg_low-cut))]),np.matmul(np.linalg.inv(covmat),[jackmass(i+reg_low,k)-a for i in range(int(ts/2-1-reg_low-cut))]))

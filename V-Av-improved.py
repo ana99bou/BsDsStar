@@ -4,6 +4,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import sys
 from scipy.optimize import minimize
+import scipy
+
+
+def pvalue(chi2, dof):
+    r"""Compute the $p$-value corresponding to a $\chi^2$ with `dof` degrees
+    of freedom."""
+    return 1 - scipy.stats.chi2.cdf(chi2, dof)
 
 def jack(x,j):
     r=0
@@ -106,7 +113,7 @@ def sum_with_exceptions_jack(lst,nsq,j,i):
 
 
 #########decide here which nsq
-nsq=5
+nsq=2
 ##########
 
 
