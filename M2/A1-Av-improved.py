@@ -72,8 +72,8 @@ mom=[['final_state_GX/operator_GammaXGamma5/n2_0/0_0_0','final_state_GY/operator
 
 ptmom=['0_0_0','1_0_0','1_1_0','1_1_1', '2_0_0','2_1_0']
 
-dsets=[f["/CHARM_PT_SEQ_SM12.14_s0.02144/c0.248/dT30/{}/forward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
-dsetsb=[f["/CHARM_PT_SEQ_SM12.14_s0.02144/c0.248/dT30/{}/backward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
+dsets=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/forward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
+dsetsb=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/backward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
 
 nmom=len(mom[nsq])
 
