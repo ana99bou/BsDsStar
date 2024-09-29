@@ -102,7 +102,8 @@ md0 = 0.9122552490234405
 pre = md0 / (2 * md * mb)
 
 #nconf=100
-nconf=889
+#nconf=889
+nconf=800
 dt=26
 ts=64
 
