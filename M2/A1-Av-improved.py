@@ -94,7 +94,8 @@ mb = 2.2526141357421965
 md0 = 0.9122552490234405
 pre = -1/(mb+md)
 
-nconf=889
+#nconf=889
+nconf=800
 dt=26
 ts=64
 
@@ -172,7 +173,7 @@ np.savetxt('./A1/A1-nsq{}.txt'.format(nsq), np.c_[np.absolute(avn0), errn0])
 ###############################################################################
 
 reg_low=18
-reg_up=25
+reg_up=22
 
 #Covarianze matrix (without prefactor, not squarrooted)
 cut=ts/2-1-reg_up
