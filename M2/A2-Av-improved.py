@@ -53,6 +53,7 @@ nsq=5
 
 
 f = h5py.File("BsDsStar.h5", "r")
+f2 = h5py.File("./BsDsStar_2ptData_M2.h5", "r")
 
 mom=[[''],
      ['final_state_GX/operator_GammaXGamma5/n2_1/1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_1','final_state_GX/operator_GammaXGamma5/n2_1/-1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_-1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_-1'],
@@ -96,38 +97,43 @@ mom2=[[''],
 
 ptmom=['0_0_0','1_0_0','1_1_0','1_1_1', '2_0_0','2_1_0']
 
-dsets=[f["/CHARM_PT_SEQ_SM12.14_s0.02144/c0.248/dT30/{}/forward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
-dsetsb=[f["/CHARM_PT_SEQ_SM12.14_s0.02144/c0.248/dT30/{}/backward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
 
-dsets2=[f["/CHARM_PT_SEQ_SM12.14_s0.02144/c0.248/dT30/{}/forward/data".format(mom2[nsq][i])] for i in range(len(mom2[nsq]))]
-dsetsb2=[f["/CHARM_PT_SEQ_SM12.14_s0.02144/c0.248/dT30/{}/backward/data".format(mom2[nsq][i])] for i in range(len(mom2[nsq]))]
+
+dsets=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/forward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
+dsetsb=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/backward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
+
+dsets2=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/forward/data".format(mom2[nsq][i])] for i in range(len(mom[nsq]))]
+dsetsb2=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/backward/data".format(mom2[nsq][i])] for i in range(len(mom[nsq]))]
 
 
 nmom=len(mom[nsq])
 nmom2=len(mom2[nsq])
 
-
-dsxn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaX/{}/data".format(ptmom[nsq])]
-dsyn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaY/{}/data".format(ptmom[nsq])]
-dszn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaZ/{}/data".format(ptmom[nsq])]
-bsn0=f["/rhq_m2.42_csw2.68_zeta1.52_SM12.14_SM12.14_s0.02144/operator_Gamma5/0_0_0/data"]
+dsxn0=f2["/cl_SM10.36_SM10.36_0.025/c0.340/operator_GammaX/n2_{}/data".format(nsq)]
+dsyn0=f2["/cl_SM10.36_SM10.36_0.025/c0.340/operator_GammaX/n2_{}/data".format(nsq)]
+dszn0=f2["/cl_SM10.36_SM10.36_0.025/c0.340/operator_GammaX/n2_{}/data".format(nsq)]
+bsn0=f2["/hl_SM10.36_SM10.36_0.025_m3.49_csw3.07_zeta1.76/operator_Gamma5/n2_0/data"]
 
 
 
 #####Eff Masses
-mdlist=[0.7348303222656272,0.7458868408203149,0.7567413330078149,0.7673809814453149,0.77745605,0.787656860351565]
+mdlist=[0.9122552490234405,0.9363156127929717,0.9604193115234406,0.9817083740234408,1.0055334472656285,1.0299121093750034]
 md=mdlist[nsq]
 
 # Constants
 
-mb = 1.9257122802734448
-md0 = 0.73483032
+mb = 2.2526141357421965
+md0 = 0.9122552490234405
 pre=md0**2*(mb-md)/(2*(mb**2*md))
 pre2=-(mb+md)
 
-nconf=98
-dt=30
-ts=96
+
+#nconf=889
+nconf=800
+dt=26
+ts=64
+
+
 
 # Initialize arrays
 
