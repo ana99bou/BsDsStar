@@ -48,12 +48,12 @@ def sum_with_exceptions_jack(lst,j,i):
 
 
 #########decide here which nsq
-nsq=5
+nsq=2
 ##########
 
 
-f = h5py.File("BsDsStar.h5", "r")
-f2 = h5py.File("./BsDsStar_2ptData_M2.h5", "r")
+f = h5py.File("BsDsStar_M2.h5", "r")
+f2 = h5py.File("BsDsStar_2ptData_M2.h5", "r")
 
 mom=[[''],
      ['final_state_GX/operator_GammaXGamma5/n2_1/1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_1','final_state_GX/operator_GammaXGamma5/n2_1/-1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_-1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_-1'],
@@ -102,8 +102,8 @@ ptmom=['0_0_0','1_0_0','1_1_0','1_1_1', '2_0_0','2_1_0']
 dsets=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/forward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
 dsetsb=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/backward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
 
-dsets2=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/forward/data".format(mom2[nsq][i])] for i in range(len(mom[nsq]))]
-dsetsb2=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/backward/data".format(mom2[nsq][i])] for i in range(len(mom[nsq]))]
+dsets2=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/forward/data".format(mom2[nsq][i])] for i in range(len(mom2[nsq]))]
+dsetsb2=[f["/CHARM_PT_SEQ_SM10.36_s0.025/c0.340/dT26/{}/backward/data".format(mom2[nsq][i])] for i in range(len(mom2[nsq]))]
 
 
 nmom=len(mom[nsq])
