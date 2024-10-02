@@ -221,8 +221,8 @@ np.savetxt('./A2/A2-nsq{}.txt'.format(nsq), np.c_[np.absolute(avn0), errn0])
 
 ###############################################################################
 
-reg_low=19
-reg_up=26
+reg_low=18
+reg_up=22
 
 #Covarianze matrix (without prefactor, not squarrooted)
 cut=ts/2-1-reg_up
