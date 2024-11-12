@@ -43,22 +43,23 @@ bsn0z=f["/hl_SM10.36_SM10.36_0.025_m3.49_csw3.07_zeta1.76/operator_Gamma5/n2_5/d
 ti=64
 configs=1636
 
+print(bsn0[0][0][:])
 
 #folding
-mir = np.zeros(shape=(889, int(ti/2+1)))
-miry = np.zeros(shape=(889, int(ti/2+1)))
-mirz = np.zeros(shape=(889, int(ti/2+1)))
-for k in range(889):
-    mir[k][0]=(np.real(bsn0[k][0][0])+np.real(bsn0[k][1][0]))/2
-    miry[k][0]=(np.real(bsn0y[k][0][0])+np.real(bsn0y[k][1][0]))/2
-    mirz[k][0]=(np.real(bsn0z[k][0][0])+np.real(bsn0z[k][1][0]))/2
+mir = np.zeros(shape=(configs, int(ti/2+1)))
+miry = np.zeros(shape=(configs, int(ti/2+1)))
+mirz = np.zeros(shape=(configs, int(ti/2+1)))
+for k in range(configs):
+    mir[k][0]=(np.real(bsn0[k][0][0]))
+    miry[k][0]=(np.real(bsn0y[k][0][0]))
+    mirz[k][0]=(np.real(bsn0z[k][0][0]))
     for j in range(int(ti/2)):
-        mir[k][j+1]=(np.real(bsn0[k][0][j+1])+np.real(bsn0[k][0][64-1-j])+np.real(bsn0[k][1][j+1])+np.real(bsn0[k][1][64-1-j]))/4
-        miry[k][j+1]=(np.real(bsn0y[k][0][j+1])+np.real(bsn0y[k][0][64-1-j])+np.real(bsn0y[k][1][j+1])+np.real(bsn0y[k][1][64-1-j]))/4
-        mirz[k][j+1]=(np.real(bsn0z[k][0][j+1])+np.real(bsn0z[k][0][64-1-j])+np.real(bsn0z[k][1][j+1])+np.real(bsn0z[k][1][64-1-j]))/4
+        mir[k][j+1]=(np.real(bsn0[k][0][j+1])+np.real(bsn0[k][0][64-1-j]))/2
+        miry[k][j+1]=(np.real(bsn0y[k][0][j+1])+np.real(bsn0y[k][0][64-1-j]))/2
+        mirz[k][j+1]=(np.real(bsn0z[k][0][j+1])+np.real(bsn0z[k][0][64-1-j]))/2
 
-res= np.zeros(ti/2+1)
-error=np.zeros(ti/2+1)
+res= np.zeros(int(ti/2+1))
+error=np.zeros(int(ti/2+1))
  
 for j in range(int(ti/2+1)):
     res[j]=(exp_val(extract(mir,j))+exp_val(extract(miry,j))+exp_val(extract(mirz,j)))/3

@@ -57,7 +57,7 @@ nsq=1
 ##########
 
 
-f = h5py.File("BsDsStar.h5", "r")
+f = h5py.File("BsDsStar_C1.h5", "r")
 
 mom=[[''],
      ['final_state_GX/operator_GammaXGamma5/n2_1/1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_1','final_state_GX/operator_GammaXGamma5/n2_1/-1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_-1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_-1'],
