@@ -30,9 +30,9 @@ def extract(lst,number):
 
 f = h5py.File("../BsDsStar_2ptData_C1.h5", "r")
 
-bsn0=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaX/n2_0/data"]
-bsn0y=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaY/n2_0/data"]
-bsn0z=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaZ/n2_0/data"]
+bsn0=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaX/n2_5/data"]
+bsn0y=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaY/n2_5/data"]
+bsn0z=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaZ/n2_5/data"]
 
 '''
 bsn0=f["/hl_SM10.36_SM10.36_0.025_m3.49_csw3.07_zeta1.76/operator_Gamma5/n2_5/data"]
@@ -100,12 +100,12 @@ for j in range(int(ti/2-1)):
 df1 = pd.DataFrame(columns=['Correlator','Error'])
 df1['Correlator']=res
 df1['Error']=error
-df1.to_csv('Corr-Ds400-0.csv', sep='\t')
+df1.to_csv('Corr-Ds400-5.csv', sep='\t')
 
 df2 = pd.DataFrame(columns=['EffectiveMass','Error'])
 df2['EffectiveMass']=mass
 df2['Error']=errors    
-df2.to_csv('Mass-Ds400-0.csv', sep='\t')
+df2.to_csv('Mass-Ds400-5.csv', sep='\t')
 
 
 
@@ -155,14 +155,14 @@ plt.errorbar(list(range(47))[1:30], mass[1:30], yerr=errors[1:30],fmt='x')
 plt.axhline(y = mbar.x[0], color = 'r', linestyle = 'dashed', label = "red line")
 plt.fill_between(list(range(47))[reg_low:reg_up], mbar.x[0]+sigma, mbar.x[0]-sigma, color='r',alpha=0.2)
 plt.yscale('log')
-plt.savefig('Zoom-Ds340-Reg-0.pdf')
+plt.savefig('Zoom-Ds400-Reg-5.pdf')
 
 df3 = pd.DataFrame(columns=['EffectiveMass','Error','RegUp','RegLow'])
 df3['EffectiveMass']=mbar.x
 df3['Error']=sigma  
 df3['RegUp']=reg_up
 df3['RegLow']=reg_low    
-df3.to_csv('Ds340Result-0.csv', sep='\t')
+df3.to_csv('Ds400Result-5.csv', sep='\t')
 
 
 
