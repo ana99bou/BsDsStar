@@ -30,9 +30,9 @@ def extract(lst,number):
 
 f = h5py.File("../BsDsStar_2ptData_C1.h5", "r")
 
-bsn0=f["/cl_SM10.36_SM10.36_0.025/c0.400/operator_GammaX/n2_0/data"]
-bsn0y=f["/cl_SM10.36_SM10.36_0.025/c0.400/operator_GammaY/n2_0/data"]
-bsn0z=f["/cl_SM10.36_SM10.36_0.025/c0.400/operator_GammaZ/n2_0/data"]
+bsn0=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaX/n2_0/data"]
+bsn0y=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaY/n2_0/data"]
+bsn0z=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaZ/n2_0/data"]
 
 '''
 bsn0=f["/hl_SM10.36_SM10.36_0.025_m3.49_csw3.07_zeta1.76/operator_Gamma5/n2_5/data"]
