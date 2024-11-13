@@ -58,8 +58,8 @@ nsq=1
 
 
 f = h5py.File("BsDsStar_C1.h5", "r")
-f2p = h5py.File("../BsDsStar_2ptData_C1.h5", "r")
-f2pB = h5py.File("../BsDsStar-2ptBs_C1.h5", "r")
+f2p = h5py.File("BsDsStar_2ptData_C1.h5", "r")
+f2pB = h5py.File("BsDsStar-2ptBs_C1.h5", "r")
 
 mom=[[''],
      ['final_state_GX/operator_GammaXGamma5/n2_1/1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_1','final_state_GX/operator_GammaXGamma5/n2_1/-1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_-1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_-1'],
@@ -89,10 +89,10 @@ dsetsb=[f["/CHARM_PT_SEQ_SM7.86_s0.03224/c0.400/dT20/{}/backward/data".format(mo
 
 nmom=len(mom[nsq])
 
-dsxn0=f2p["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaX/{}/data".format(ptmom[nsq])]
-dsyn0=f2p["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaY/{}/data".format(ptmom[nsq])]
-dszn0=f2p["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaZ/{}/data".format(ptmom[nsq])]
-bsn0=f2pB["/hl_SM7.86_SM7.86_0.03224_m7.47_csw4.92_zeta2.93/operator_Gamma5/0_0_0/data"]
+dsxn0=f2p["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaX/n2_{}/data".format(nsq)]
+dsyn0=f2p["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaY/n2_{}/data".format(nsq)]
+dszn0=f2p["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaZ/n2_{}/data".format(nsq)]
+bsn0=f2pB["/hl_SM7.86_SM7.86_0.03224_m7.47_csw4.92_zeta2.93/operator_Gamma5/n2_0/data"]
 
 
 
@@ -106,9 +106,9 @@ mb = 3.009638061523448
 md0 = 1.1056561279296913
 pre = md0 / (2 * md * mb)
 
-nconf=98
-dt=30
-ts=96
+nconf=1636
+dt=20
+ts=64
 
 # Initialize arrays
 
@@ -142,7 +142,7 @@ for j in range(dt):
         tmpdx = np.mean(np.real(dsxn0[k, :, j+1]) + np.real(dsxn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dsxn0[k, :, 0]))
         tmpdy = np.mean(np.real(dsyn0[k, :, j+1]) + np.real(dsyn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dsyn0[k, :, 0]))
         tmpdz = np.mean(np.real(dszn0[k, :, j+1]) + np.real(dszn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dszn0[k, :, 0]))
-        tmpb = np.mean(np.real(bsn0[k, :, dt-1-j]) + np.real(bsn0[k, :, ts-dt+1+j])) / 2 if j != dt-1 else np.mean(np.real(bsn0[k, :, 0]))
+        tmpb = np.real(bsn0[k, dt-1-j]) + np.real(bsn0[k, ts-dt+1+j]) / 2 if j != dt-1 else np.real(bsn0[k,  0])
 
         for l in range(nmom):
             av1n0[l][j,k]=tmp[l]
@@ -191,8 +191,8 @@ np.savetxt('./A0/A0-nsq{}.txt'.format(nsq), np.c_[np.absolute(avn0), errn0])
 
 ###############################################################################
 
-reg_low=16
-reg_up=23
+reg_low=13
+reg_up=16
 
 #Covarianze matrix (without prefactor, not squarrooted)
 cut=ts/2-1-reg_up
