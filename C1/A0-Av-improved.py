@@ -171,7 +171,7 @@ for j in range(dt):
 #        x=x+((((jack(av1n0x[j],i)-jack(av1n0y[j],i)+jack(av1n0z[j],i)+jack(av1n0xm[j],i)-jack(av1n0ym[j],i)+jack(av1n0zm[j],i)+jack(av1n0xn[j],i)-jack(av1n0yn[j],i)+jack(av1n0zn[j],i)+jack(av1n0xmn[j],i)-jack(av1n0ymn[j],i)+jack(av1n0zmn[j],i)+jack(av1n0xp[j],i)-jack(av1n0yp[j],i)+jack(av1n0zp[j],i)+jack(av1n0xmp[j],i)-jack(av1n0ymp[j],i)+jack(av1n0zmp[j],i)+jack(av1n0xnp[j],i)-jack(av1n0ynp[j],i)+jack(av1n0znp[j],i)+jack(av1n0xmnp[j],i)-jack(av1n0ymnp[j],i)+jack(av1n0zmnp[j],i))/nmom)/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(30-j))))*pre-avn0[j])**2
         #x=x+((((sum_with_exceptions_jack(av1n0, j, i))/nmom)/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(30-j))))*pre-avn0[j])**2
         #x=x+((((jack(av1n0[0][j],i)+jack(av1n0[1][j],i)+jack(av1n0[2][j],i)+jack(av1n0[3][j],i)+jack(av1n0[4][j],i)+jack(av1n0[5][j],i))/nmom)/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(30-j))))*pre-avn0[j])**2
-        x=x+((((sum_with_exceptions_jack(av1n0, j, i)))/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(30-j))))*pre-avn0[j])**2
+        x=x+((((sum_with_exceptions_jack(av1n0, j, i)))/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(dt-j))))*pre-avn0[j])**2
 
     errn0[j]=np.sqrt((nconf-1)/nconf*x) 
     #errnn0[j]=np.sqrt((98-1)/98*x)*10**(85)
@@ -229,7 +229,7 @@ mbar=minimize(chi,0.1,method='Nelder-Mead', tol=1e-6)
 
 def jackmass(t1,i):
     #+jack(av1n0xm[t1],i)-jack(av1n0ym[t1],i)+jack(av1n0zm[t1],i)
-    return (((sum_with_exceptions_jack(av1n0, t1, i)))/(1/3*np.sqrt((jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[t1],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1))*np.exp(-mb*(30-(t1)))))*pre
+    return (((sum_with_exceptions_jack(av1n0, t1, i)))/(1/3*np.sqrt((jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[t1],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1))*np.exp(-mb*(dt-(t1)))))*pre
 
 def chijack(a,k):
     return np.dot(np.transpose([jackmass(i+reg_low,k)-a for i in range(int(ts/2-1-reg_low-cut))]),np.matmul(np.linalg.inv(covmat),[jackmass(i+reg_low,k)-a for i in range(int(ts/2-1-reg_low-cut))]))
