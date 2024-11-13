@@ -58,6 +58,8 @@ nsq=1
 
 
 f = h5py.File("BsDsStar_C1.h5", "r")
+f2p = h5py.File("../BsDsStar_2ptData_C1.h5", "r")
+f2pB = h5py.File("../BsDsStar-2ptBs_C1.h5", "r")
 
 mom=[[''],
      ['final_state_GX/operator_GammaXGamma5/n2_1/1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_1','final_state_GX/operator_GammaXGamma5/n2_1/-1_0_0','final_state_GY/operator_GammaYGamma5/n2_1/0_-1_0', 'final_state_GZ/operator_GammaZGamma5/n2_1/0_0_-1'],
@@ -82,15 +84,15 @@ mom=[[''],
 ptmom=['0_0_0','1_0_0','1_1_0','1_1_1', '2_0_0','2_1_0']
 
 
-dsets=[f["/CHARM_PT_SEQ_SM12.14_s0.02144/c0.248/dT30/{}/forward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
-dsetsb=[f["/CHARM_PT_SEQ_SM12.14_s0.02144/c0.248/dT30/{}/backward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
+dsets=[f["/CHARM_PT_SEQ_SM7.86_s0.03224/c0.400/dT20/{}/forward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
+dsetsb=[f["/CHARM_PT_SEQ_SM7.86_s0.03224/c0.400/dT20/{}/backward/data".format(mom[nsq][i])] for i in range(len(mom[nsq]))]
 
 nmom=len(mom[nsq])
 
-dsxn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaX/{}/data".format(ptmom[nsq])]
-dsyn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaY/{}/data".format(ptmom[nsq])]
-dszn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaZ/{}/data".format(ptmom[nsq])]
-bsn0=f["/rhq_m2.42_csw2.68_zeta1.52_SM12.14_SM12.14_s0.02144/operator_Gamma5/0_0_0/data"]
+dsxn0=f2p["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaX/{}/data".format(ptmom[nsq])]
+dsyn0=f2p["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaY/{}/data".format(ptmom[nsq])]
+dszn0=f2p["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaZ/{}/data".format(ptmom[nsq])]
+bsn0=f2pB["/hl_SM7.86_SM7.86_0.03224_m7.47_csw4.92_zeta2.93/operator_Gamma5/0_0_0/data"]
 
 
 
