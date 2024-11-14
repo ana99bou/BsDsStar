@@ -48,7 +48,7 @@ def sum_with_exceptions_jack(lst,j,i):
 
 
 #########decide here which nsq
-nsq=5
+nsq=0
 ##########
 
 
