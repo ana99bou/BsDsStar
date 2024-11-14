@@ -95,7 +95,7 @@ plt.fill_between(list(range(47))[int(reg_low5):int(reg_up5+1)], nsq5plt['Effecti
 
 
 plt.annotate(r'$\bf{preliminary}$',xy=(0.7,0.03),xycoords='axes fraction',fontsize=15,color='grey',alpha=.7)
-#plt.axis((0,20,0.22,0.34))
+plt.axis((0,20,0.1,0.17))
 
 
 

@@ -207,7 +207,7 @@ mbar=minimize(chi,0.1,method='Nelder-Mead', tol=1e-6)
 def jackmass(t1,i):
     #+jack(av1n0xm[t1],i)-jack(av1n0ym[t1],i)+jack(av1n0zm[t1],i)
     #return (((jack(av1n0x[t1],i)-jack(av1n0y[t1],i)+jack(av1n0z[t1],i)+jack(av1n0xm[t1],i)-jack(av1n0ym[t1],i)+jack(av1n0zm[t1],i)+jack(av1n0xn[t1],i)-jack(av1n0yn[t1],i)+jack(av1n0zn[t1],i)+jack(av1n0xmn[t1],i)-jack(av1n0ymn[t1],i)+jack(av1n0zmn[t1],i))/nmom)/(1/3*np.sqrt((jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[t1],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1))*np.exp(-mb*(30-(t1)))))*pre
-    return (((sum_with_exceptions_jack(av1n0, t1, i)))/(1/3*np.sqrt((jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[t1],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1))*np.exp(-mb*(30-(t1)))))*pre
+    return (((sum_with_exceptions_jack(av1n0, t1, i)))/(1/3*np.sqrt((jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[t1],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1))*np.exp(-mb*(dt-(t1)))))*pre
 
 def chijack(a,k):
     return np.dot(np.transpose([jackmass(i+reg_low,k)-a for i in range(int(ts/2-1-reg_low-cut))]),np.matmul(np.linalg.inv(covmat),[jackmass(i+reg_low,k)-a for i in range(int(ts/2-1-reg_low-cut))]))
