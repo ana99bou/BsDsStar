@@ -217,7 +217,7 @@ for j in range(dt):
         tmpdx = np.mean(np.real(dsxn0[k, :, j+1]) + np.real(dsxn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dsxn0[k, :, 0]))
         tmpdy = np.mean(np.real(dsyn0[k, :, j+1]) + np.real(dsyn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dsyn0[k, :, 0]))
         tmpdz = np.mean(np.real(dszn0[k, :, j+1]) + np.real(dszn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dszn0[k, :, 0]))
-        tmpb = np.real(bsn0[k, dt-1-j]) + np.real(bsn0[k, ts-dt+1+j])/ 2 if j != dt-1 else np.real(bsn0[k, 0])
+        tmpb = (np.real(bsn0[k, dt-1-j]) + np.real(bsn0[k, ts-dt+1+j]))/ 2 if j != dt-1 else np.real(bsn0[k, 0])
 
 
         for l in range(nmom):
