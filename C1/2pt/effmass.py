@@ -117,7 +117,7 @@ for j in range(int(ti/2-1)):
 df1 = pd.DataFrame(columns=['Correlator','Error'])
 df1['Correlator']=res
 df1['Error']=error
-df1.to_csv('Corr-Bs.csv', sep='\t')
+#df1.to_csv('Corr-Bs.csv', sep='\t')
 
 df2 = pd.DataFrame(columns=['EffectiveMass','Error'])
 df2['EffectiveMass']=mass
@@ -159,10 +159,18 @@ def chijack(a,k):
 
 
 #Std Deviation for all jakcknife blocks
+jblocks=np.zeros(configs)
 h=0
 for i in range(configs):
-    h=h+(minimize(chijack,0.1,args=(i),method='Nelder-Mead', tol=1e-6).x[0]-mbar.x[0])**2
+    tmp=minimize(chijack,0.1,args=(i),method='Nelder-Mead', tol=1e-6).x[0]
+    jblocks[i]=tmp
+    h=h+(tmp-mbar.x[0])**2
 sigma=np.sqrt((configs-1-reg_low-cut)/(configs-reg_low-cut)*h)
+
+df4 = pd.DataFrame(columns=['EffectiveMass'])
+df4['EffectiveMass']=jblocks   
+df4.to_csv('Bs-blocks.csv', sep='\t')
+
 
 print(mbar,sigma)
 
@@ -173,7 +181,7 @@ plt.errorbar(list(range(47))[1:30], mass[1:30], yerr=errors[1:30],fmt='x')
 plt.axhline(y = mbar.x[0], color = 'r', linestyle = 'dashed', label = "red line")
 plt.fill_between(list(range(47))[reg_low:reg_up], mbar.x[0]+sigma, mbar.x[0]-sigma, color='r',alpha=0.2)
 plt.yscale('log')
-plt.savefig('Zoom-Bs-Reg.pdf')
+#plt.savefig('Zoom-Bs-Reg.pdf')
 #plt.savefig('Zoom-Ds400-Reg-5.pdf')
 
 df3 = pd.DataFrame(columns=['EffectiveMass','Error','RegUp','RegLow'])
@@ -181,7 +189,7 @@ df3['EffectiveMass']=mbar.x
 df3['Error']=sigma  
 df3['RegUp']=reg_up
 df3['RegLow']=reg_low    
-df3.to_csv('BsResult.csv', sep='\t')
+#df3.to_csv('BsResult.csv', sep='\t')
 #df3.to_csv('Ds400Result-5.csv', sep='\t')
 
 
