@@ -113,7 +113,7 @@ def sum_with_exceptions_jack(lst,nsq,j,i):
 
 
 #########decide here which nsq
-nsq=1
+nsq=5
 ##########
 
 
@@ -267,8 +267,8 @@ np.savetxt('./V/V-nsq{}.txt'.format(nsq), np.c_[np.absolute(avn0), errn0])
 
 ###############################################################################
 
-reg_low=18
-reg_up=25
+reg_low=13
+reg_up=16
 
 #Covarianze matrix (without prefactor, not squarrooted)
 cut=ts/2-1-reg_up
