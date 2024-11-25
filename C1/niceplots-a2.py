@@ -12,9 +12,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 mb=1.9257122802734448
-md0=0.73483032
+md0=0.73482032
 md1=0.7458868408203149
-md2=0.7567413330078149
+md2=0.7567413320078149
 md4=0.77745605
 md5=0.787656860351565
 pre1=-1/(mb+md1)
@@ -64,17 +64,17 @@ figure_size = (6, 4)
 plt.xlabel('Time',fontsize=15)
 plt.ylabel(r'$\widetilde{A}_2$',fontsize=15)
 #plt.plot(range(96),nsq1[0])
-#plt.plot(range(30),avn0y[0:30])
-#plt.plot(range(30),avn0z[0:30])
-#plt.plot(range(30),avn0[0:30])
+#plt.plot(range(20),avn0y[0:20])
+#plt.plot(range(20),avn0z[0:20])
+#plt.plot(range(20),avn0[0:20])
 #plt.plot(range(96),avn00)
-#plt.errorbar(list(range(30)), -pre0*nsq0[0][0:30], yerr=-pre0*nsq0[1][0:30],ls='none',fmt='x',label='$n^2=0$',color='g')
+#plt.errorbar(list(range(20)), -pre0*nsq0[0][0:20], yerr=-pre0*nsq0[1][0:20],ls='none',fmt='x',label='$n^2=0$',color='g')
 
-plt.errorbar(list(range(30)), nsq1[0][0:30], yerr=nsq1[1][0:30],ls='none',fmt='x',label='$n^2=1$',color='b')
-plt.errorbar(list(range(30)), nsq2[0][0:30], yerr=nsq2[1][0:30],ls='none',fmt='x',label='$n^2=2$',color='orange')
-plt.errorbar(list(range(30)), nsq3[0][0:30], yerr=nsq3[1][0:30],ls='none',fmt='x',label='$n^2=3$',color='brown')
-plt.errorbar(list(range(30)), nsq4[0][0:30], yerr=nsq4[1][0:30],ls='none',fmt='x',label='$n^2=4$',color='red')
-plt.errorbar(list(range(30)), nsq5[0][0:30], yerr=nsq5[1][0:30],ls='none',fmt='x',label='$n^2=5$',color='magenta')
+plt.errorbar(list(range(20)), nsq1[0][0:20], yerr=nsq1[1][0:20],ls='none',fmt='x',label='$n^2=1$',color='b')
+plt.errorbar(list(range(20)), nsq2[0][0:20], yerr=nsq2[1][0:20],ls='none',fmt='x',label='$n^2=2$',color='orange')
+plt.errorbar(list(range(20)), nsq3[0][0:20], yerr=nsq3[1][0:20],ls='none',fmt='x',label='$n^2=3$',color='brown')
+plt.errorbar(list(range(20)), nsq4[0][0:20], yerr=nsq4[1][0:20],ls='none',fmt='x',label='$n^2=4$',color='red')
+plt.errorbar(list(range(20)), nsq5[0][0:20], yerr=nsq5[1][0:20],ls='none',fmt='x',label='$n^2=5$',color='magenta')
 
 #plt.plot(x0,y0,color='g')
 #plt.fill_between(list(range(47))[int(reg_low0):int(reg_up0+1)], -nsq0plt['EffectiveMass']+sigma0, -nsq0plt['EffectiveMass']-sigma0, color='g',alpha=0.2)
@@ -91,10 +91,10 @@ plt.plot(x5,y5, color='magenta',linewidth=0.5)
 plt.fill_between(list(range(47))[int(reg_low5):int(reg_up5+1)], -nsq5plt['EffectiveMass']+sigma5, -nsq5plt['EffectiveMass']-sigma5, color='magenta',alpha=0.2)
 
 plt.annotate(r'$\bf{preliminary}$',xy=(0.7,0.03),xycoords='axes fraction',fontsize=15,color='grey',alpha=.7)
-plt.axis((0,30,0.08,0.15))
+plt.axis((0,20,0.03,0.12))
 plt.tick_params(axis='both', which='major', labelsize=14)  # For ma
 
 
 #plt.yscale('log')
 plt.legend()
-plt.savefig('Niceplot-A2.pdf',transparent=True,dpi=300,bbox_inches='tight')
+plt.savefig('Niceplot-A2.pdf',transparent=True,dpi=200,bbox_inches='tight')

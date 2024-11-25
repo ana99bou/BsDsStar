@@ -48,11 +48,13 @@ plt.axis((0,12,0,0.5))
 
 # Adding title and labels
 #plt.title('A0')
-plt.xlabel(r'$q^2[GeV]^2$')
-plt.ylabel('Lattice Form Factors')
+plt.xlabel(r'$q^2[GeV]^2$',fontsize=15)
+plt.ylabel('Lattice Form Factors',fontsize=15)
+
+plt.tick_params(axis='both', which='major', labelsize=14) 
 plt.legend()
 plt.annotate(r'$\bf{preliminary}$',xy=(0.65,0.03),xycoords='axes fraction',fontsize=15,color='magenta',alpha=1)
 
 # Show plot
 #plt.grid(True)
-plt.savefig('FF-q^2.pdf',transparent=True)
+plt.savefig('FF-q^2.pdf',transparent=True,bbox_inches='tight')

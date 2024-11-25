@@ -57,9 +57,9 @@ reg_low5=nsq5plt['RegLow']
 reg_up5=nsq5plt['RegUp']
 sigma5=nsq5plt['Error']
 
-
-plt.xlabel('Time')
-plt.ylabel(r'$\widetilde{A}_1$')
+figure_size = (6, 4)
+plt.xlabel('Time',fontsize=15)
+plt.ylabel(r'$\widetilde{A}_1$',fontsize=15)
 #plt.plot(range(96),nsq1[0])
 #plt.plot(range(30),avn0y[0:30])
 #plt.plot(range(30),avn0z[0:30])
@@ -73,25 +73,25 @@ plt.errorbar(list(range(30)), nsq4[0][0:30], yerr=nsq4[1][0:30],ls='none',fmt='x
 plt.errorbar(list(range(30)), nsq5[0][0:30], yerr=nsq5[1][0:30],ls='none',fmt='x',label='$n^2=5$',color='magenta')
 
 
-plt.plot(x0,y0,color='g')
+plt.plot(x0,y0,color='g',linewidth=0.5)
 plt.fill_between(list(range(47))[int(reg_low0):int(reg_up0+1)], -nsq0plt['EffectiveMass']+sigma0, -nsq0plt['EffectiveMass']-sigma0, color='g',alpha=0.2)
 
-plt.plot(x1,y1, color='b')
+plt.plot(x1,y1, color='b',linewidth=0.5)
 plt.fill_between(list(range(47))[int(reg_low1):int(reg_up1+1)], -nsq1plt['EffectiveMass']+sigma1, -nsq1plt['EffectiveMass']-sigma1, color='b',alpha=0.2)
-plt.plot(x2,y2,color='orange')
+plt.plot(x2,y2,color='orange',linewidth=0.5)
 plt.fill_between(list(range(47))[int(reg_low2):int(reg_up2+1)], -nsq2plt['EffectiveMass']+sigma2, -nsq2plt['EffectiveMass']-sigma2, color='orange',alpha=0.2)
-plt.plot(x4,y4,color='red')
+plt.plot(x4,y4,color='red',linewidth=0.5)
 plt.fill_between(list(range(47))[int(reg_low4):int(reg_up4+1)], -nsq4plt['EffectiveMass']+sigma4, -nsq4plt['EffectiveMass']-sigma4, color='red',alpha=0.2)
 
-plt.plot(x5,y5,color='magenta')
+plt.plot(x5,y5,color='magenta',linewidth=0.5)
 plt.fill_between(list(range(47))[int(reg_low5):int(reg_up5+1)], -nsq5plt['EffectiveMass']+sigma5, -nsq5plt['EffectiveMass']-sigma5, color='magenta',alpha=0.2)
 
 
-plt.axis((0,30,0.33,0.49))
-
+plt.axis((0,30,0.3,0.48))
+plt.tick_params(axis='both', which='major', labelsize=14)  # For major tic
 plt.annotate(r'$\bf{preliminary}$',xy=(0.7,0.03),xycoords='axes fraction',fontsize=15,color='grey',alpha=.7)
 
 
 #plt.yscale('log')
 plt.legend()
-plt.savefig('Niceplot-A1.pdf',transparent=True)
+plt.savefig('Niceplot-A1.pdf',transparent=True,dpi=300,bbox_inches='tight')
