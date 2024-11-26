@@ -32,9 +32,9 @@ def extract(lst,number):
 f = h5py.File("BsDsStar_2ptData_C2.h5", "r")
 
 
-bsn0=f["/cl_SM7.86_SM7.86_0.03224/c0.350/operator_GammaX/n2_0/data"]
-bsn0y=f["/cl_SM7.86_SM7.86_0.03224/c0.350/operator_GammaY/n2_0/data"]
-bsn0z=f["/cl_SM7.86_SM7.86_0.03224/c0.350/operator_GammaZ/n2_0/data"]
+bsn0=f["/cl_SM7.86_SM7.86_0.03224/c0.350/operator_GammaX/n2_5/data"]
+bsn0y=f["/cl_SM7.86_SM7.86_0.03224/c0.350/operator_GammaY/n2_5/data"]
+bsn0z=f["/cl_SM7.86_SM7.86_0.03224/c0.350/operator_GammaZ/n2_5/data"]
 
 '''
 bsn0=f["/hl_SM7.86_SM7.86_0.03224_m7.47_csw4.92_zeta2.93/operator_Gamma5/n2_0/data"]
@@ -118,13 +118,13 @@ for j in range(int(ti/2-1)):
 df1 = pd.DataFrame(columns=['Correlator','Error'])
 df1['Correlator']=res
 df1['Error']=error
-df1.to_csv('Corr-Ds400-0.csv', sep='\t')
+df1.to_csv('Corr-Ds400-5.csv', sep='\t')
 
 df2 = pd.DataFrame(columns=['EffectiveMass','Error'])
 df2['EffectiveMass']=mass
 df2['Error']=errors    
-df2.to_csv('Mass-Bs.csv', sep='\t')
-df2.to_csv('Mass-Ds400-0.csv', sep='\t')
+#df2.to_csv('Mass-Bs.csv', sep='\t')
+df2.to_csv('Mass-Ds400-5.csv', sep='\t')
 
 
 
@@ -170,7 +170,7 @@ sigma=np.sqrt((configs-1-reg_low-cut)/(configs-reg_low-cut)*h)
 
 df4 = pd.DataFrame(columns=['EffectiveMass'])
 df4['EffectiveMass']=jblocks   
-df4.to_csv('Ds400-nsq0-blocks.csv', sep='\t')
+df4.to_csv('Ds400-nsq5-blocks.csv', sep='\t')
 
 
 print(mbar,sigma)
@@ -183,7 +183,7 @@ plt.axhline(y = mbar.x[0], color = 'r', linestyle = 'dashed', label = "red line"
 plt.fill_between(list(range(47))[reg_low:reg_up], mbar.x[0]+sigma, mbar.x[0]-sigma, color='r',alpha=0.2)
 plt.yscale('log')
 #plt.savefig('Zoom-Bs-Reg.pdf')
-plt.savefig('Zoom-Ds400-Reg-0.pdf')
+plt.savefig('Zoom-Ds400-Reg-5.pdf')
 
 df3 = pd.DataFrame(columns=['EffectiveMass','Error','RegUp','RegLow'])
 df3['EffectiveMass']=mbar.x
@@ -191,7 +191,7 @@ df3['Error']=sigma
 df3['RegUp']=reg_up
 df3['RegLow']=reg_low    
 #df3.to_csv('BsResult.csv', sep='\t')
-df3.to_csv('Ds400Result-0.csv', sep='\t')
+df3.to_csv('Ds400Result-5.csv', sep='\t')
 
 
 
