@@ -43,7 +43,7 @@ bsn0z=f["/hl_SM7.86_SM7.86_0.03224_m7.47_csw4.92_zeta2.93/operator_Gamma5/n2_0/d
 '''
 
 ti=64
-configs=1636
+configs=1419
 
 print(bsn0[0][:])
 
