@@ -28,19 +28,23 @@ def extract(lst,number):
     return [item[number] for item in lst]
 
 
-#f = h5py.File("../BsDsStar-2ptBs_C1.h5", "r")
+#f = h5py.File("BsDsStar_2ptBs_C2.h5", "r")
 f = h5py.File("BsDsStar_2ptData_C2.h5", "r")
 
-
+'''
 bsn0=f["/cl_SM7.86_SM7.86_0.03224/c0.350/operator_GammaX/n2_5/data"]
 bsn0y=f["/cl_SM7.86_SM7.86_0.03224/c0.350/operator_GammaY/n2_5/data"]
 bsn0z=f["/cl_SM7.86_SM7.86_0.03224/c0.350/operator_GammaZ/n2_5/data"]
-
 '''
-bsn0=f["/hl_SM7.86_SM7.86_0.03224_m7.47_csw4.92_zeta2.93/operator_Gamma5/n2_0/data"]
+print([key for key in f.keys()])
+
+
+
+
+bsn0=f["/hl_SM7.86_PT_0.03224_m7.47_csw4.92_zeta2.93/operator_Gamma5/n2_0/data"]
 bsn0y=f["/hl_SM7.86_SM7.86_0.03224_m7.47_csw4.92_zeta2.93/operator_Gamma5/n2_0/data"]
 bsn0z=f["/hl_SM7.86_SM7.86_0.03224_m7.47_csw4.92_zeta2.93/operator_Gamma5/n2_0/data"]
-'''
+
 
 ti=64
 configs=1419
@@ -48,7 +52,7 @@ configs=1419
 print(bsn0[0][:])
 
 #folding
-
+'''
 mir = np.zeros(shape=(configs, int(ti/2+1)))
 miry = np.zeros(shape=(configs, int(ti/2+1)))
 mirz = np.zeros(shape=(configs, int(ti/2+1)))
@@ -60,8 +64,8 @@ for k in range(configs):
         mir[k][j+1]=(np.real(bsn0[k][0][j+1])+np.real(bsn0[k][0][64-1-j]))/2
         miry[k][j+1]=(np.real(bsn0y[k][0][j+1])+np.real(bsn0y[k][0][64-1-j]))/2
         mirz[k][j+1]=(np.real(bsn0z[k][0][j+1])+np.real(bsn0z[k][0][64-1-j]))/2
-
 '''
+
 mir = np.zeros(shape=(configs, int(ti/2+1)))
 miry = np.zeros(shape=(configs, int(ti/2+1)))
 mirz = np.zeros(shape=(configs, int(ti/2+1)))
@@ -73,7 +77,7 @@ for k in range(configs):
         mir[k][j+1]=(np.real(bsn0[k][j+1])+np.real(bsn0[k][64-1-j]))/2
         miry[k][j+1]=(np.real(bsn0y[k][j+1])+np.real(bsn0y[k][64-1-j]))/2
         mirz[k][j+1]=(np.real(bsn0z[k][j+1])+np.real(bsn0z[k][64-1-j]))/2
-'''
+
 
 
 res= np.zeros(int(ti/2+1))
@@ -118,13 +122,13 @@ for j in range(int(ti/2-1)):
 df1 = pd.DataFrame(columns=['Correlator','Error'])
 df1['Correlator']=res
 df1['Error']=error
-df1.to_csv('Corr-Ds400-5.csv', sep='\t')
+df1.to_csv('Corr-Bs.csv', sep='\t')
 
 df2 = pd.DataFrame(columns=['EffectiveMass','Error'])
 df2['EffectiveMass']=mass
 df2['Error']=errors    
 #df2.to_csv('Mass-Bs.csv', sep='\t')
-df2.to_csv('Mass-Ds400-5.csv', sep='\t')
+df2.to_csv('Mass-Bs.csv', sep='\t')
 
 
 
@@ -170,7 +174,7 @@ sigma=np.sqrt((configs-1-reg_low-cut)/(configs-reg_low-cut)*h)
 
 df4 = pd.DataFrame(columns=['EffectiveMass'])
 df4['EffectiveMass']=jblocks   
-df4.to_csv('Ds400-nsq5-blocks.csv', sep='\t')
+df4.to_csv('Bs-blocks.csv', sep='\t')
 
 
 print(mbar,sigma)
@@ -183,7 +187,7 @@ plt.axhline(y = mbar.x[0], color = 'r', linestyle = 'dashed', label = "red line"
 plt.fill_between(list(range(47))[reg_low:reg_up], mbar.x[0]+sigma, mbar.x[0]-sigma, color='r',alpha=0.2)
 plt.yscale('log')
 #plt.savefig('Zoom-Bs-Reg.pdf')
-plt.savefig('Zoom-Ds400-Reg-5.pdf')
+plt.savefig('Zoom-Bs-Reg.pdf')
 
 df3 = pd.DataFrame(columns=['EffectiveMass','Error','RegUp','RegLow'])
 df3['EffectiveMass']=mbar.x
@@ -191,7 +195,7 @@ df3['Error']=sigma
 df3['RegUp']=reg_up
 df3['RegLow']=reg_low    
 #df3.to_csv('BsResult.csv', sep='\t')
-df3.to_csv('Ds400Result-5.csv', sep='\t')
+df3.to_csv('BsResult.csv', sep='\t')
 
 
 
