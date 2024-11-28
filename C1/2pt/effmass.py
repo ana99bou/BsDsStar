@@ -170,7 +170,7 @@ sigma=np.sqrt((configs-1-reg_low-cut)/(configs-reg_low-cut)*h)
 
 df4 = pd.DataFrame(columns=['EffectiveMass'])
 df4['EffectiveMass']=jblocks   
-df4.to_csv('Ds400-nsq1-blocks.csv', sep='\t')
+df4.to_csv('Ds400-nsq2-blocks.csv', sep='\t')
 
 
 print(mbar,sigma)
