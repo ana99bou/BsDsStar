@@ -53,7 +53,7 @@ def sum_with_exceptions_jack(lst,j,i):
             total += jack(num[j],i)  # Add other elements
     return total/len(lst)
 #########decide here which nsq
-nsq=1
+nsq=2
 ##########
 
 
@@ -102,7 +102,7 @@ md=mdlist[nsq]
 
 # Constants
 
-mb = 1.92366577
+mb = 1.92498840332032
 md0 = 0.73483032
 pre = md0 / (2 * md * mb)
 
