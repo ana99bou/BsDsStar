@@ -96,7 +96,7 @@ plt.fill_between(list(range(47))[int(reg_low5):int(reg_up5+1)], nsq5plt['Effecti
 
 plt.tick_params(axis='both', which='major', labelsize=14)  # For major tic
 plt.annotate(r'$\bf{preliminary}$',xy=(0.7,0.03),xycoords='axes fraction',fontsize=15,color='grey',alpha=.7)
-plt.axis((0,30,0.20,0.33))
+#plt.axis((0,30,0.20,0.33))
 figure_size = (6, 4)
 
 
