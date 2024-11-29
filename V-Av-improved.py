@@ -113,39 +113,12 @@ def sum_with_exceptions_jack(lst,nsq,j,i):
 
 
 #########decide here which nsq
-nsq=2
+nsq=5
 ##########
 
 
 f = h5py.File("BsDsStar.h5", "r")
 
-'''
-mom=[[''],
-     ['final_state_GX/operator_GammaY/n2_1/0_0_1','final_state_GY/operator_GammaZ/n2_1/1_0_0', 'final_state_GZ/operator_GammaX/n2_1/0_1_0','final_state_GY/operator_GammaX/n2_1/0_0_1','final_state_GZ/operator_GammaY/n2_1/1_0_0', 'final_state_GX/operator_GammaZ/n2_1/0_1_0',
-      'final_state_GX/operator_GammaY/n2_1/0_0_-1','final_state_GY/operator_GammaZ/n2_1/-1_0_0', 'final_state_GZ/operator_GammaX/n2_1/0_-1_0','final_state_GY/operator_GammaX/n2_1/0_0_-1','final_state_GZ/operator_GammaY/n2_1/-1_0_0', 'final_state_GX/operator_GammaZ/n2_1/0_-1_0'],
-     ['final_state_GY/operator_GammaZ/n2_2/1_1_0','final_state_GX/operator_GammaY/n2_2/0_1_1','final_state_GZ/operator_GammaX/n2_2/1_1_0','final_state_GX/operator_GammaZ/n2_2/1_1_0','final_state_GZ/operator_GammaY/n2_2/1_1_0','final_state_GY/operator_GammaX/n2_2/1_0_1','final_state_GY/operator_GammaZ/n2_2/1_0_1','final_state_GX/operator_GammaY/n2_2/1_0_1','final_state_GZ/operator_GammaX/n2_2/0_1_1','final_state_GX/operator_GammaZ/n2_2/0_1_1','final_state_GZ/operator_GammaY/n2_2/1_0_1','final_state_GY/operator_GammaX/n2_2/0_1_1',
-      'final_state_GY/operator_GammaZ/n2_2/1_-1_0','final_state_GX/operator_GammaY/n2_2/0_-1_1','final_state_GZ/operator_GammaX/n2_2/-1_1_0','final_state_GX/operator_GammaZ/n2_2/-1_1_0','final_state_GZ/operator_GammaY/n2_2/1_-1_0','final_state_GY/operator_GammaX/n2_2/-1_0_1','final_state_GY/operator_GammaZ/n2_2/1_0_-1','final_state_GX/operator_GammaY/n2_2/-1_0_1','final_state_GZ/operator_GammaX/n2_2/0_1_-1','final_state_GX/operator_GammaZ/n2_2/0_1_-1','final_state_GZ/operator_GammaY/n2_2/1_0_-1','final_state_GY/operator_GammaX/n2_2/0_-1_1',
-      'final_state_GY/operator_GammaZ/n2_2/-1_1_0','final_state_GX/operator_GammaY/n2_2/0_1_-1','final_state_GZ/operator_GammaX/n2_2/1_-1_0','final_state_GX/operator_GammaZ/n2_2/1_-1_0','final_state_GZ/operator_GammaY/n2_2/-1_1_0','final_state_GY/operator_GammaX/n2_2/1_0_-1','final_state_GY/operator_GammaZ/n2_2/-1_0_1','final_state_GX/operator_GammaY/n2_2/1_0_-1','final_state_GZ/operator_GammaX/n2_2/0_-1_1','final_state_GX/operator_GammaZ/n2_2/0_-1_1','final_state_GZ/operator_GammaY/n2_2/-1_0_1','final_state_GY/operator_GammaX/n2_2/0_1_-1',
-      'final_state_GY/operator_GammaZ/n2_2/-1_-1_0','final_state_GX/operator_GammaY/n2_2/0_-1_-1','final_state_GZ/operator_GammaX/n2_2/-1_-1_0','final_state_GX/operator_GammaZ/n2_2/-1_-1_0','final_state_GZ/operator_GammaY/n2_2/-1_-1_0','final_state_GY/operator_GammaX/n2_2/-1_0_-1','final_state_GY/operator_GammaZ/n2_2/-1_0_-1','final_state_GX/operator_GammaY/n2_2/-1_0_-1','final_state_GZ/operator_GammaX/n2_2/0_-1_-1','final_state_GX/operator_GammaZ/n2_2/0_-1_-1','final_state_GZ/operator_GammaY/n2_2/-1_0_-1','final_state_GY/operator_GammaX/n2_2/0_-1_-1'],
-     ['final_state_GX/operator_GammaY/n2_3/1_1_1','final_state_GY/operator_GammaZ/n2_3/1_1_1','final_state_GZ/operator_GammaX/n2_3/1_1_1','final_state_GY/operator_GammaX/n2_3/1_1_1','final_state_GZ/operator_GammaY/n2_3/1_1_1','final_state_GX/operator_GammaZ/n2_3/1_1_1',
-      'final_state_GX/operator_GammaY/n2_3/-1_1_1','final_state_GY/operator_GammaZ/n2_3/1_1_-1','final_state_GZ/operator_GammaX/n2_3/-1_1_1', 'final_state_GY/operator_GammaX/n2_3/-1_1_1','final_state_GZ/operator_GammaY/n2_3/1_-1_1','final_state_GX/operator_GammaZ/n2_3/-1_1_1',
-      'final_state_GX/operator_GammaY/n2_3/1_-1_1','final_state_GY/operator_GammaZ/n2_3/1_-1_1','final_state_GZ/operator_GammaX/n2_3/1_1_-1', 'final_state_GY/operator_GammaX/n2_3/1_-1_1','final_state_GZ/operator_GammaY/n2_3/1_1_-1','final_state_GX/operator_GammaZ/n2_3/1_1_-1',
-      'final_state_GX/operator_GammaY/n2_3/1_1_-1','final_state_GY/operator_GammaZ/n2_3/-1_1_1','final_state_GZ/operator_GammaX/n2_3/1_-1_1', 'final_state_GY/operator_GammaX/n2_3/1_1_-1','final_state_GZ/operator_GammaY/n2_3/-1_1_1','final_state_GX/operator_GammaZ/n2_3/1_-1_1',
-      'final_state_GX/operator_GammaY/n2_3/-1_-1_1','final_state_GY/operator_GammaZ/n2_3/1_-1_-1','final_state_GZ/operator_GammaX/n2_3/-1_1_-1','final_state_GY/operator_GammaX/n2_3/-1_-1_1','final_state_GZ/operator_GammaY/n2_3/1_-1_-1','final_state_GX/operator_GammaZ/n2_3/-1_1_-1',
-      'final_state_GX/operator_GammaY/n2_3/-1_1_-1','final_state_GY/operator_GammaZ/n2_3/-1_1_-1','final_state_GZ/operator_GammaX/n2_3/-1_-1_1','final_state_GY/operator_GammaX/n2_3/-1_1_-1','final_state_GZ/operator_GammaY/n2_3/-1_1_-1','final_state_GX/operator_GammaZ/n2_3/1_-1_-1',
-      'final_state_GX/operator_GammaY/n2_3/1_-1_-1','final_state_GY/operator_GammaZ/n2_3/-1_-1_1','final_state_GZ/operator_GammaX/n2_3/1_-1_-1','final_state_GY/operator_GammaX/n2_3/1_-1_-1','final_state_GZ/operator_GammaY/n2_3/-1_-1_1','final_state_GX/operator_GammaZ/n2_3/-1_-1_1',
-      'final_state_GX/operator_GammaY/n2_3/-1_-1_-1','final_state_GY/operator_GammaZ/n2_3/-1_-1_-1','final_state_GZ/operator_GammaX/n2_3/-1_-1_-1','final_state_GY/operator_GammaX/n2_3/-1_-1_-1','final_state_GZ/operator_GammaY/n2_3/-1_-1_-1','final_state_GX/operator_GammaZ/n2_3/-1_-1_-1',],
-     ['final_state_GX/operator_GammaY/n2_4/0_0_2','final_state_GY/operator_GammaZ/n2_4/2_0_0', 'final_state_GZ/operator_GammaX/n2_4/0_2_0','final_state_GY/operator_GammaX/n2_4/0_0_2','final_state_GZ/operator_GammaY/n2_4/2_0_0', 'final_state_GX/operator_GammaZ/n2_4/0_2_0',
-      'final_state_GX/operator_GammaY/n2_4/0_0_-2','final_state_GY/operator_GammaZ/n2_4/-2_0_0', 'final_state_GZ/operator_GammaX/n2_4/0_-2_0','final_state_GY/operator_GammaX/n2_4/0_0_-2','final_state_GZ/operator_GammaY/n2_4/-2_0_0', 'final_state_GX/operator_GammaZ/n2_4/0_-2_0'],
-     ['final_state_GX/operator_GammaY/n2_5/0_2_1','final_state_GY/operator_GammaZ/n2_5/1_2_0','final_state_GZ/operator_GammaX/n2_5/2_1_0','final_state_GX/operator_GammaZ/n2_5/2_1_0','final_state_GY/operator_GammaX/n2_5/2_0_1','final_state_GZ/operator_GammaY/n2_5/1_2_0','final_state_GX/operator_GammaY/n2_5/2_0_1','final_state_GY/operator_GammaZ/n2_5/1_0_2','final_state_GZ/operator_GammaX/n2_5/0_1_2','final_state_GX/operator_GammaZ/n2_5/0_1_2','final_state_GY/operator_GammaX/n2_5/0_2_1','final_state_GZ/operator_GammaY/n2_5/1_0_2',
-      'final_state_GX/operator_GammaY/n2_5/0_-2_1','final_state_GY/operator_GammaZ/n2_5/1_-2_0','final_state_GZ/operator_GammaX/n2_5/-2_1_0','final_state_GX/operator_GammaZ/n2_5/-2_1_0','final_state_GY/operator_GammaX/n2_5/-2_0_1','final_state_GZ/operator_GammaY/n2_5/1_-2_0','final_state_GX/operator_GammaY/n2_5/-2_0_1','final_state_GY/operator_GammaZ/n2_5/1_0_-2','final_state_GZ/operator_GammaX/n2_5/0_1_-2','final_state_GX/operator_GammaZ/n2_5/0_1_-2','final_state_GY/operator_GammaX/n2_5/0_-2_1','final_state_GZ/operator_GammaY/n2_5/1_0_-2',
-      'final_state_GX/operator_GammaY/n2_5/0_2_-1','final_state_GY/operator_GammaZ/n2_5/-1_2_0','final_state_GZ/operator_GammaX/n2_5/2_-1_0','final_state_GX/operator_GammaZ/n2_5/2_-1_0','final_state_GY/operator_GammaX/n2_5/2_0_-1','final_state_GZ/operator_GammaY/n2_5/-1_2_0','final_state_GX/operator_GammaY/n2_5/2_0_-1','final_state_GY/operator_GammaZ/n2_5/-1_0_2','final_state_GZ/operator_GammaX/n2_5/0_-1_2','final_state_GX/operator_GammaZ/n2_5/0_-1_2','final_state_GY/operator_GammaX/n2_5/0_2_-1','final_state_GZ/operator_GammaY/n2_5/-1_0_2',
-      'final_state_GX/operator_GammaY/n2_5/0_-2_-1','final_state_GY/operator_GammaZ/n2_5/-1_-2_0','final_state_GZ/operator_GammaX/n2_5/-2_-1_0','final_state_GX/operator_GammaZ/n2_5/-2_-1_0','final_state_GY/operator_GammaX/n2_5/-2_0_-1','final_state_GZ/operator_GammaY/n2_5/-1_-2_0','final_state_GX/operator_GammaY/n2_5/-2_0_-1','final_state_GY/operator_GammaZ/n2_5/-1_0_-2','final_state_GZ/operator_GammaX/n2_5/0_-1_-2','final_state_GX/operator_GammaZ/n2_5/0_-1_-2','final_state_GY/operator_GammaX/n2_5/0_-2_-1','final_state_GZ/operator_GammaY/n2_5/-1_0_-2',
-     'final_state_GX/operator_GammaY/n2_5/0_1_2','final_state_GY/operator_GammaZ/n2_5/2_1_0','final_state_GZ/operator_GammaX/n2_5/1_2_0','final_state_GX/operator_GammaZ/n2_5/1_2_0','final_state_GY/operator_GammaX/n2_5/1_0_2','final_state_GZ/operator_GammaY/n2_5/2_1_0','final_state_GX/operator_GammaY/n2_5/1_0_2','final_state_GY/operator_GammaZ/n2_5/2_0_1','final_state_GZ/operator_GammaX/n2_5/0_2_1','final_state_GX/operator_GammaZ/n2_5/0_2_1','final_state_GY/operator_GammaX/n2_5/0_1_2','final_state_GZ/operator_GammaY/n2_5/2_0_1',
-     'final_state_GX/operator_GammaY/n2_5/0_-1_2','final_state_GY/operator_GammaZ/n2_5/2_-1_0','final_state_GZ/operator_GammaX/n2_5/-1_2_0','final_state_GX/operator_GammaZ/n2_5/-1_2_0','final_state_GY/operator_GammaX/n2_5/-1_0_2','final_state_GZ/operator_GammaY/n2_5/2_-1_0','final_state_GX/operator_GammaY/n2_5/-1_0_2','final_state_GY/operator_GammaZ/n2_5/2_0_-1','final_state_GZ/operator_GammaX/n2_5/0_2_-1','final_state_GX/operator_GammaZ/n2_5/0_2_-1','final_state_GY/operator_GammaX/n2_5/0_-1_2','final_state_GZ/operator_GammaY/n2_5/2_0_-1',
-     'final_state_GX/operator_GammaY/n2_5/0_1_-2','final_state_GY/operator_GammaZ/n2_5/-2_1_0','final_state_GZ/operator_GammaX/n2_5/1_-2_0','final_state_GX/operator_GammaZ/n2_5/1_-2_0','final_state_GY/operator_GammaX/n2_5/1_0_-2','final_state_GZ/operator_GammaY/n2_5/2_1_0','final_state_GX/operator_GammaY/n2_5/1_0_-2','final_state_GY/operator_GammaZ/n2_5/-2_0_1','final_state_GZ/operator_GammaX/n2_5/0_-2_1','final_state_GX/operator_GammaZ/n2_5/0_-2_1','final_state_GY/operator_GammaX/n2_5/0_1_-2','final_state_GZ/operator_GammaY/n2_5/-2_0_1',
-     'final_state_GX/operator_GammaY/n2_5/0_-1_-2','final_state_GY/operator_GammaZ/n2_5/-2_-1_0','final_state_GZ/operator_GammaX/n2_5/-1_-2_0','final_state_GX/operator_GammaZ/n2_5/-1_-2_0','final_state_GY/operator_GammaX/n2_5/-1_0_-2','final_state_GZ/operator_GammaY/n2_5/-2_-1_0','final_state_GX/operator_GammaY/n2_5/-1_0_-2','final_state_GY/operator_GammaZ/n2_5/-2_0_-1','final_state_GZ/operator_GammaX/n2_5/0_-2_-1','final_state_GX/operator_GammaZ/n2_5/0_-2_-1','final_state_GY/operator_GammaX/n2_5/0_-1_-2','final_state_GZ/operator_GammaY/n2_5/-2_0_-1']]
-'''     
 
 mom=[[''],
      ['final_state_GX/operator_GammaY/n2_1/0_0_1','final_state_GY/operator_GammaZ/n2_1/1_0_0', 'final_state_GZ/operator_GammaX/n2_1/0_1_0','final_state_GY/operator_GammaX/n2_1/0_0_1','final_state_GZ/operator_GammaY/n2_1/1_0_0', 'final_state_GX/operator_GammaZ/n2_1/0_1_0',
@@ -189,6 +162,8 @@ dsyn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaY/{}/data".format(
 dszn0=f["/CHARM_SM12.14_SM12.14_s0.02144/c0.248/operator_GammaZ/{}/data".format(ptmom[nsq])]
 bsn0=f["/rhq_m2.42_csw2.68_zeta1.52_SM12.14_SM12.14_s0.02144/operator_Gamma5/0_0_0/data"]
 
+bsfit=pd.read_csv('./2pt/Bs-blocks.csv',sep='\s')
+dsfit=pd.read_csv('./2pt/Ds248-nsq{}-blocks.csv'.format(nsq),sep='\s')
 
 
 #####Eff Masses
@@ -197,7 +172,7 @@ md=mdlist[nsq]
 
 # Constants
 
-mb = 1.9257122802734448
+mb =1.92498840332032
 md0 = 0.73483032
 pre=-(mb+md0)/(2*mb)
 
@@ -219,6 +194,12 @@ avdz = np.zeros((dt, nconf))
 avb = np.zeros((dt, nconf))
 avn0 = np.zeros(dt)
 
+findx = np.zeros(dt)
+findy = np.zeros(dt)
+findz = np.zeros(dt)
+finb = np.zeros(dt)
+fin3pt=np.zeros((dt,nmom))
+
 
 # Loop optsmizatsons
 for j in range(dt):
@@ -237,7 +218,7 @@ for j in range(dt):
         tmpdx = np.mean(np.real(dsxn0[k, :, j+1]) + np.real(dsxn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dsxn0[k, :, 0]))
         tmpdy = np.mean(np.real(dsyn0[k, :, j+1]) + np.real(dsyn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dsyn0[k, :, 0]))
         tmpdz = np.mean(np.real(dszn0[k, :, j+1]) + np.real(dszn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dszn0[k, :, 0]))
-        tmpb = np.mean(np.real(bsn0[k, :, dt-1-j]) + np.real(bsn0[k, :, ts-dt+1+j])) / 2 if j != dt-1 else np.mean(np.real(bsn0[k, :, 0]))
+        tmpb = np.mean(np.real(bsn0[k, :, j+1]) + np.real(bsn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(bsn0[k, :, 0]))
 
 
         for l in range(nmom):
@@ -254,7 +235,14 @@ for j in range(dt):
         tempdz += tmpdz
         tempb += tmpb
     #avn0[j] = pre * (((temp1x + temp1y + temp1z-temp1xm - temp1ym - temp1zm +temp1xn +temp1yn + temp1zn-temp1xmn - temp1ymn - temp1zmn+1/2*(temp1xp + temp1yp + temp1zp-temp1xmp - temp1ymp - temp1zmp +temp1xnp +temp1ynp + temp1znp-temp1xmnp - temp1ymnp - temp1zmnp)) / nmom) / (1/3 * np.sqrt((tempdx + tempdy + tempdz) * tempb))) * np.sqrt((4 * mb * md) / (np.exp(-md * j) * np.exp(-mb * (dt - j))))
-    avn0[j] = pre * (sum_with_exceptions(temp, nsq) / (1/3 * np.sqrt((tempdx + tempdy + tempdz) * tempb))) * np.sqrt((4 * mb * md) / (np.exp(-md * j) * np.exp(-mb * (dt - j))))
+    findx[j]=tempdx
+    findy[j]=tempdy
+    findz[j]=tempdz
+    finb[j]=tempb
+    fin3pt[j]=temp
+    
+for j in range(dt):    
+    avn0[j] = pre * (sum_with_exceptions(fin3pt[j], nsq) / (1/3 * np.sqrt((findx[j] + findy[j] + findz[j]) * finb[dt-1-j]))) * np.sqrt((4 * mb * md) / (np.exp(-md * j) * np.exp(-mb * (dt - j))))
     #avn0[j] = pre * ((temp[0]+temp[1]+temp[2]-temp[3]-temp[4]-temp[5])/6 / (1/3 * np.sqrt((tempdx + tempdy + tempdz) * tempb))) * np.sqrt((4 * mb * md) / (np.exp(-md * j) * np.exp(-mb * (dt - j))))
     
     #+temp1xn + temp1yn + temp1zn+temp1xmn + temp1ymn + temp1zmn
@@ -267,7 +255,8 @@ for j in range(dt):
     for i in range(nconf):
         #x=x+((((jack(av1n0x[j],i)+jack(av1n0y[j],i)+jack(av1n0z[j],i)-jack(av1n0xm[j],i)-jack(av1n0ym[j],i)-jack(av1n0zm[j],i)+jack(av1n0xn[j],i)+jack(av1n0yn[j],i)+jack(av1n0zn[j],i)-jack(av1n0xmn[j],i)-jack(av1n0ymn[j],i)-jack(av1n0zmn[j],i)+1/2*(jack(av1n0xp[j],i)+jack(av1n0yp[j],i)+jack(av1n0zp[j],i)-jack(av1n0xmp[j],i)-jack(av1n0ymp[j],i)-jack(av1n0zmp[j],i)+jack(av1n0xnp[j],i)+jack(av1n0ynp[j],i)+jack(av1n0znp[j],i)-jack(av1n0xmnp[j],i)-jack(av1n0ymnp[j],i)-jack(av1n0zmnp[j],i)))/nmom)/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(30-j))))*pre-avn0[j])**2
         #x=x+(((jack(av1n0[0][j],i)+jack(av1n0[1][j],i)+jack(av1n0[2][j],i)-jack(av1n0[3][j],i)-jack(av1n0[4][j],i)-jack(av1n0[5][j],i))/6/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(dt-j))))*pre-avn0[j])**2
-        x=x+((sum_with_exceptions_jack(av1n0,nsq,j,i)/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(dt-j))))*pre-avn0[j])**2
+        x=x+((sum_with_exceptions_jack(av1n0, nsq,j, i)/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[dt-1-j],i))))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*j)*np.exp(-bsfit['EffectiveMass'][i]*(dt-j))))*pre-avn0[j])**2
+        #x=x+((sum_with_exceptions_jack(av1n0,nsq,j,i)/(1/3*np.sqrt((jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[j],i))))*np.sqrt((4*md*mb)/(np.exp(-md*j)*np.exp(-mb*(dt-j))))*pre-avn0[j])**2
     errn0[j]=np.sqrt((nconf-1)/nconf*x) 
     #errnn0[j]=np.sqrt((98-1)/98*x)*10**(85)
 
@@ -299,7 +288,7 @@ for t1 in range(int(ts/2-1-reg_low-cut)):
         for i in range(nconf):  
             #+jack(av1n0xm[t1+reg_low],i)-jack(av1n0ym[t1+reg_low],i)+jack(av1n0zm[t1+reg_low],i)
             #+jack(av1n0xm[t2+reg_low],i)-jack(av1n0ym[t2+reg_low],i)+jack(av1n0zm[t2+reg_low],i)
-            x=x+(((sum_with_exceptions_jack(av1n0,nsq, t1+reg_low, i))/(1/3*np.sqrt((jack(avdx[t1+reg_low],i)+jack(avdy[t1+reg_low],i)+jack(avdz[t1+reg_low],i))*jack(avb[t1+reg_low],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1+reg_low))*np.exp(-mb*(dt-(t1+reg_low)))))*pre-avn0[t1])*(((sum_with_exceptions_jack(av1n0,nsq, t2+reg_low, i))/(1/3*np.sqrt((jack(avdx[t2+reg_low],i)+jack(avdy[t2+reg_low],i)+jack(avdz[t2+reg_low],i))*jack(avb[t2+reg_low],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t2+reg_low))*np.exp(-mb*(dt-(t2+reg_low)))))*pre-avn0[t2])            
+            x=x+(((sum_with_exceptions_jack(av1n0,nsq, t1+reg_low, i))/(1/3*np.sqrt((jack(avdx[t1+reg_low],i)+jack(avdy[t1+reg_low],i)+jack(avdz[t1+reg_low],i))*jack(avb[dt-1-(t1+reg_low)],i))))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*(t1+reg_low))*np.exp(-bsfit['EffectiveMass'][i]*(dt-(t1+reg_low)))))*pre-avn0[t1])*(((sum_with_exceptions_jack(av1n0,nsq, t2+reg_low, i))/(1/3*np.sqrt((jack(avdx[t2+reg_low],i)+jack(avdy[t2+reg_low],i)+jack(avdz[t2+reg_low],i))*jack(avb[dt-1-(t2+reg_low)],i))))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*(t2+reg_low))*np.exp(-bsfit['EffectiveMass'][i]*(dt-(t2+reg_low)))))*pre-avn0[t2])            
             
             
         covmat[t1][t2]=x
@@ -314,7 +303,7 @@ mbar=minimize(chi,0.1,method='Nelder-Mead', tol=1e-6)
 
 def jackmass(t1,i):
     #+jack(av1n0xm[t1],i)-jack(av1n0ym[t1],i)+jack(av1n0zm[t1],i)
-    return (((sum_with_exceptions_jack(av1n0, nsq,t1, i)))/(1/3*np.sqrt((jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[t1],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1))*np.exp(-mb*(30-(t1)))))*pre
+    return (((sum_with_exceptions_jack(av1n0,nsq, t1, i)))/(1/3*np.sqrt((jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[dt-1-t1],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1))*np.exp(-mb*(dt-(t1)))))*pre
 
 def chijack(a,k):
     return np.dot(np.transpose([jackmass(i+reg_low,k)-a for i in range(int(ts/2-1-reg_low-cut))]),np.matmul(np.linalg.inv(covmat),[jackmass(i+reg_low,k)-a for i in range(int(ts/2-1-reg_low-cut))]))
