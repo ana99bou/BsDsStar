@@ -48,7 +48,7 @@ def sum_with_exceptions_jack(lst,j,i):
 
 
 #########decide here which nsq
-nsq=5
+nsq=1
 ##########
 
 
@@ -89,7 +89,7 @@ md=mdlist[nsq]
 
 # Constants
 
-mb = 1.9257122802734448
+mb = 1.92498840332032
 md0 = 0.73483032
 pre = -1/(mb+md)
 
