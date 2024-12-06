@@ -53,7 +53,7 @@ plt.ylabel('Lattice Form Factors',fontsize=15)
 
 plt.tick_params(axis='both', which='major', labelsize=14) 
 plt.legend()
-plt.annotate(r'$\bf{preliminary}$',xy=(0.65,0.03),xycoords='axes fraction',fontsize=15,color='magenta',alpha=1)
+plt.annotate(r'$\bf{preliminary}$',xy=(0.65,0.03),xycoords='axes fraction',fontsize=15,color='grey',alpha=1)
 
 # Show plot
 #plt.grid(True)
