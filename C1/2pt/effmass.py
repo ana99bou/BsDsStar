@@ -32,9 +32,9 @@ def extract(lst,number):
 f = h5py.File("../BsDsStar_2ptData_C1.h5", "r")
 
 
-bsn0=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaX/n2_2/data"]
-bsn0y=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaY/n2_2/data"]
-bsn0z=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaZ/n2_2/data"]
+bsn0=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaX/n2_4/data"]
+bsn0y=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaY/n2_4/data"]
+bsn0z=f["/cl_SM7.86_SM7.86_0.03224/c0.400/operator_GammaZ/n2_4/data"]
 
 '''
 bsn0=f["/hl_SM7.86_SM7.86_0.03224_m7.47_csw4.92_zeta2.93/operator_Gamma5/n2_0/data"]
@@ -170,7 +170,7 @@ sigma=np.sqrt((configs-1-reg_low-cut)/(configs-reg_low-cut)*h)
 
 df4 = pd.DataFrame(columns=['EffectiveMass'])
 df4['EffectiveMass']=jblocks   
-df4.to_csv('Ds400-nsq2-blocks.csv', sep='\t')
+df4.to_csv('Ds400-nsq4-blocks.csv', sep='\t')
 
 
 print(mbar,sigma)
