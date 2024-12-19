@@ -75,7 +75,7 @@ plt.errorbar(list(range(20)), nsq2[0][0:20], yerr=nsq2[1][0:20],ls='none',fmt='x
 
 plt.errorbar(list(range(20)), nsq3[0][0:20], yerr=nsq3[1][0:20],ls='none',fmt='x',label='$n^2=3$',color='brown')
 plt.errorbar(list(range(20)), nsq4[0][0:20], yerr=nsq4[1][0:20],ls='none',fmt='x',label='$n^2=4$',color='red')
-plt.errorbar(list(range(20)), nsq5[0][0:20], yerr=nsq5[1][0:20],ls='none',fmt='x',label='$n^2=5$',color='magenta')
+#plt.errorbar(list(range(20)), nsq5[0][0:20], yerr=nsq5[1][0:20],ls='none',fmt='x',label='$n^2=5$',color='magenta')
 
 #plt.plot(x0,y0,color='g')
 #plt.fill_between(list(range(47))[int(reg_low0):int(reg_up0+1)], nsq0plt['EffectiveMass']+sigma0, nsq0plt['EffectiveMass']-sigma0, color='g',alpha=0.2)
@@ -95,7 +95,7 @@ plt.fill_between(list(range(47))[int(reg_low5):int(reg_up5+1)], nsq5plt['Effecti
 '''
 
 plt.annotate(r'$\bf{preliminary}$',xy=(0.7,0.03),xycoords='axes fraction',fontsize=15,color='grey',alpha=.7)
-plt.axis((0,20,0.08,0.17))
+#plt.axis((0,20,0.08,0.17))
 
 
 
