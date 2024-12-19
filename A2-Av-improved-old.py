@@ -125,9 +125,8 @@ md=mdlist[nsq]
 
 mb = 1.92498840332032
 md0 = 0.73483032
-pre=-md0**2*(mb-md)/(2*(mb**2*md))
-#pre2=-(mb+md)
-pre2=1/md0**2
+pre=md0**2*(mb-md)/(2*(mb**2*md))
+pre2=-(mb+md)
 
 nconf=98
 dt=30
@@ -135,32 +134,32 @@ ts=96
 
 # Initialize arrays
 
-av1n0=np.zeros((nmom, dt+1,nconf))
+av1n0=np.zeros((nmom, dt,nconf))
 for i in range(nmom):
-    av1n0[i]=np.zeros((dt+1, nconf))
+    av1n0[i]=np.zeros((dt, nconf))
 
-av1n02=np.zeros((nmom2, dt+1,nconf))
+av1n02=np.zeros((nmom2, dt,nconf))
 for i in range(nmom2):
-    av1n02[i]=np.zeros((dt+1, nconf))
+    av1n02[i]=np.zeros((dt, nconf))
 
 
-avdx = np.zeros((dt+1, nconf))
-avdy = np.zeros((dt+1, nconf))
-avdz = np.zeros((dt+1, nconf))
-avb = np.zeros((dt+1, nconf))
-avn0 = np.zeros(dt+1)
+avdx = np.zeros((dt, nconf))
+avdy = np.zeros((dt, nconf))
+avdz = np.zeros((dt, nconf))
+avb = np.zeros((dt, nconf))
+avn0 = np.zeros(dt)
 
-findx = np.zeros(dt+1)
-findy = np.zeros(dt+1)
-findz = np.zeros(dt+1)
-finb = np.zeros(dt+1)
-fin3pt=np.zeros((dt+1,nmom))
+findx = np.zeros(dt)
+findy = np.zeros(dt)
+findz = np.zeros(dt)
+finb = np.zeros(dt)
+fin3pt=np.zeros((dt,nmom))
 
-fin3pt2 =np.zeros((dt+1,nmom2))
+fin3pt2 =np.zeros((dt,nmom2))
 
 
 # Loop optsmizatsons
-for j in range(dt+1):
+for j in range(dt):
     
     temp=np.zeros(nmom)
     temp2=np.zeros(nmom2)  
@@ -177,10 +176,10 @@ for j in range(dt+1):
         tmp2=[np.mean((np.real(dsets2[i][k, :, j]) + np.real(dsetsb2[i][k, :, dt-j]))) / 2 for i in range(nmom2)]
         
             
-        tmpdx = np.mean(np.real(dsxn0[k, :, j]) + np.real(dsxn0[k, :, ts-j])) / 2 if j != 0 else np.mean(np.real(dsxn0[k, :, 0]))
-        tmpdy = np.mean(np.real(dsyn0[k, :, j]) + np.real(dsyn0[k, :, ts-j])) / 2 if j != 0 else np.mean(np.real(dsyn0[k, :, 0]))
-        tmpdz = np.mean(np.real(dszn0[k, :, j]) + np.real(dszn0[k, :, ts-j])) / 2 if j != 0 else np.mean(np.real(dszn0[k, :, 0]))
-        tmpb = np.mean(np.real(bsn0[k, :, j]) + np.real(bsn0[k, :, ts-j])) / 2 if j != 0 else np.mean(np.real(bsn0[k, :, 0]))
+        tmpdx = np.mean(np.real(dsxn0[k, :, j+1]) + np.real(dsxn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dsxn0[k, :, 0]))
+        tmpdy = np.mean(np.real(dsyn0[k, :, j+1]) + np.real(dsyn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dsyn0[k, :, 0]))
+        tmpdz = np.mean(np.real(dszn0[k, :, j+1]) + np.real(dszn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(dszn0[k, :, 0]))
+        tmpb = np.mean(np.real(bsn0[k, :, j+1]) + np.real(bsn0[k, :, ts-1-j])) / 2 if j != 0 else np.mean(np.real(bsn0[k, :, 0]))
 
         for l in range(nmom):
             av1n0[l][j,k]=tmp[l]
@@ -206,17 +205,17 @@ for j in range(dt+1):
     fin3pt[j]=temp
     fin3pt2[j]=temp2
     
-for j in range(dt+1):    
-    avn0[j]=pre*(pre2*sum_with_exceptions(fin3pt2[j])+sum_with_exceptions(fin3pt[j]))/(np.sqrt(1/3*(findx[j]+findy[j]+findz[j])*finb[dt-j]))*np.sqrt((4*mb*md)/(np.exp(-md*j)*np.exp(-mb*(dt-j))))
+for j in range(dt):    
+    avn0[j]=pre*(pre2*(sum_with_exceptions(fin3pt2[j]))*(1/md-1)*(mb+md0)-((sum_with_exceptions(fin3pt[j])/(np.sqrt(1/3*(findx[j]+findy[j]+findz[j])*finb[dt-1-j]))))*np.sqrt((4*mb*md)/(np.exp(-md*j)*np.exp(-mb*(dt-j)))))
     
 
-errn0=np.zeros(shape=(dt+1))
+errn0=np.zeros(shape=(dt))
 #errnn0=np.zeros(shape=(96))
 
-for j in range(dt+1):
+for j in range(dt):
     x=0
     for i in range(nconf):
-        x=x+(pre*(pre2*sum_with_exceptions_jack(av1n02, j, i)+sum_with_exceptions_jack(av1n0, j, i))/(np.sqrt(1/3*(jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[dt-j],i)))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*j)*np.exp(-bsfit['EffectiveMass'][i]*(dt-j))))-avn0[j])**2
+        x=x+(pre*(pre2*sum_with_exceptions_jack(av1n02, j, i)*(1/dsfit['EffectiveMass'][i]-1)*(bsfit['EffectiveMass'][i]+ds0fit['EffectiveMass'][i])-((sum_with_exceptions_jack(av1n0, j, i))/(np.sqrt(1/3*(jack(avdx[j],i)+jack(avdy[j],i)+jack(avdz[j],i))*jack(avb[dt-1-j],i)))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*j)*np.exp(-bsfit['EffectiveMass'][i]*(dt-j))))))-avn0[j])**2
     errn0[j]=np.sqrt((nconf-1)/nconf*x) 
     #errnn0[j]=np.sqrt((98-1)/98*x)*10**(85)
 
@@ -248,8 +247,7 @@ for t1 in range(int(ts/2-1-reg_low-cut)):
         for i in range(nconf):  
             #+jack(av1n0xm[t1+reg_low],i)-jack(av1n0ym[t1+reg_low],i)+jack(av1n0zm[t1+reg_low],i)
             #+jack(av1n0xm[t2+reg_low],i)-jack(av1n0ym[t2+reg_low],i)+jack(av1n0zm[t2+reg_low],i)
-            x=x+(((pre2*sum_with_exceptions_jack(av1n02, t1+reg_low, i)-sum_with_exceptions_jack(av1n0, t1+reg_low, i))/(np.sqrt(1/3*(jack(avdx[t1+reg_low],i)+jack(avdy[t1+reg_low],i)+jack(avdz[t1+reg_low],i))*jack(avb[dt-(t1+reg_low)],i))))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*(t1+reg_low))*np.exp(-bsfit['EffectiveMass'][i]*(dt-(t1+reg_low)))))*pre-avn0[t1])
-            *(((pre2*sum_with_exceptions_jack(av1n02, t2+reg_low, i)-sum_with_exceptions_jack(av1n0, t2+reg_low, i))/(np.sqrt(1/3*(jack(avdx[t2+reg_low],i)+jack(avdy[t2+reg_low],i)+jack(avdz[t2+reg_low],i))*jack(avb[dt-(t2+reg_low)],i))))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*(t2+reg_low))*np.exp(-bsfit['EffectiveMass'][i]*(dt-(t2+reg_low)))))*pre-avn0[t2])            
+            x=x+(((pre2*sum_with_exceptions_jack(av1n02, t1+reg_low, i)*(1/dsfit['EffectiveMass'][i]-1)*(bsfit['EffectiveMass'][i]+ds0fit['EffectiveMass'][i]))-(sum_with_exceptions_jack(av1n0, t1+reg_low, i)/(np.sqrt(1/3*(jack(avdx[t1+reg_low],i)+jack(avdy[t1+reg_low],i)+jack(avdz[t1+reg_low],i))*jack(avb[dt-1-(t1+reg_low)],i))))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*(t1+reg_low))*np.exp(-bsfit['EffectiveMass'][i]*(dt-(t1+reg_low))))))*pre-avn0[t1])*(((pre2*sum_with_exceptions_jack(av1n02, t2+reg_low, i)*(1/dsfit['EffectiveMass'][i]-1)*(bsfit['EffectiveMass'][i]+ds0fit['EffectiveMass'][i]))-(sum_with_exceptions_jack(av1n0, t2+reg_low, i)/(np.sqrt(1/3*(jack(avdx[t2+reg_low],i)+jack(avdy[t2+reg_low],i)+jack(avdz[t2+reg_low],i))*jack(avb[dt-1-(t2+reg_low)],i))))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*(t2+reg_low))*np.exp(-bsfit['EffectiveMass'][i]*(dt-(t2+reg_low))))))*pre-avn0[t2])            
             '''
             if nmom==3 and nmom2==3:
                 x=x+(((pre2*(jack(av1n0xa[t1+reg_low],i)-jack(av1n0ya[t1+reg_low],i)+jack(av1n0za[t1+reg_low],i))/3*(1/md-1)*(mb+md0))-(((jack(av1n0x[t1+reg_low],i)-jack(av1n0y[t1+reg_low],i)+jack(av1n0z[t1+reg_low],i))/3)/(1/3*np.sqrt((jack(avdx[t1+reg_low],i)+jack(avdy[t1+reg_low],i)+jack(avdz[t1+reg_low],i))*jack(avb[t1+reg_low],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t1+reg_low))*np.exp(-mb*(30-(t1+reg_low))))))*pre-avn0[t1])*(((pre2*(jack(av1n0xa[t2+reg_low],i)-jack(av1n0ya[t2+reg_low],i)+jack(av1n0za[t2+reg_low],i))/3*(1/md-1)*(mb+md0))-(((jack(av1n0x[t2+reg_low],i)-jack(av1n0y[t2+reg_low],i)+jack(av1n0z[t2+reg_low],i))/3)/(1/3*np.sqrt((jack(avdx[t2+reg_low],i)+jack(avdy[t2+reg_low],i)+jack(avdz[t2+reg_low],i))*jack(avb[t2+reg_low],i))))*np.sqrt((4*md*mb)/(np.exp(-md*(t2+reg_low))*np.exp(-mb*(dt-(t2+reg_low))))))*pre-avn0[t2])            
@@ -272,7 +270,7 @@ mbar=minimize(chi,0.1,method='Nelder-Mead', tol=1e-6)
 
 def jackmass(t1,i):
     #+jack(av1n0xm[t1],i)-jack(av1n0ym[t1],i)+jack(av1n0zm[t1],i)
-    return pre*((pre2*sum_with_exceptions_jack(av1n02, t1, i)-sum_with_exceptions_jack(av1n0, t1, i))/(np.sqrt(1/3*(jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[dt-t1],i))))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*(t1))*np.exp(-bsfit['EffectiveMass'][i]*(dt-(t1))))
+    return pre*((pre2*sum_with_exceptions_jack(av1n02, t1, i)*(1/dsfit['EffectiveMass'][i]-1)*(bsfit['EffectiveMass'][i]+ds0fit['EffectiveMass'][i]))-(sum_with_exceptions_jack(av1n0, t1, i)/(np.sqrt(1/3*(jack(avdx[t1],i)+jack(avdy[t1],i)+jack(avdz[t1],i))*jack(avb[dt-1-t1],i))))*np.sqrt((4*dsfit['EffectiveMass'][i]*bsfit['EffectiveMass'][i])/(np.exp(-dsfit['EffectiveMass'][i]*(t1))*np.exp(-bsfit['EffectiveMass'][i]*(dt-(t1))))))
 
 def chijack(a,k):
     return np.dot(np.transpose([jackmass(i+reg_low,k)-a for i in range(int(ts/2-1-reg_low-cut))]),np.matmul(np.linalg.inv(covmat),[jackmass(i+reg_low,k)-a for i in range(int(ts/2-1-reg_low-cut))]))
